@@ -17,10 +17,12 @@
 
 
 
-  <meta name="description" content="how to make a blog"/>
+  <meta name="description" content="记录工作中Vue项目遇到的问题及解决方案，持续更新"/>
 
 
 
+
+  <meta name="keywords" content="vue相关问题" />
 
 
 
@@ -40,7 +42,7 @@
 
 
 
-<link rel="canonical" href="https://littlefaye.gitee.io/teresa/2018/08/14/testOnepage/"/>
+<link rel="canonical" href="https://littlefaye.gitee.io/teresa/2018/08/15/about-vue/"/>
 
 
 
@@ -97,7 +99,7 @@
   window.config = {"title":"Teresa","subtitle":null,"description":"about fe","author":"Teresa-哼哼","language":"zh-CN","timezone":null,"url":"https://littlefaye.gitee.io/teresa","root":"/teresa/","permalink":":year/:month/:day/:title/","permalink_defaults":null,"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":true,"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":null,"first_line_number":"always1"},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","per_page":10,"pagination_dir":"page","theme":"even","deploy":{"type":"git","repo":"https://gitee.com/littleFaye/Teresa.git"},"ignore":[],"keywords":null,"index_generator":{"per_page":10,"order_by":"-date","path":""},"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"category_generator":{"per_page":10},"tag_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"sanitize":false,"tables":true,"breaks":true,"smartLists":true,"smartypants":true,"modifyAnchors":"","autolink":true},"server":{"port":4000,"log":false,"ip":"0.0.0.0","compress":false,"header":true},"since":2015,"favicon":"/favicon.ico","rss":false,"menu":{"Home":"/","Archives":"/archives/","Tags":"/tags","Categories":"/categories","About":"/about"},"color":"Default","toc":true,"fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"1748711164@qq.com","stack-overflow":null,"twitter":null,"facebook":null,"linkedin":null,"google":null,"github":"https://github.com/Faye0807","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":null,"app_key":null},"baidu_analytics":"9b4723f0455add81c1300727d6fe2f0f","baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
 </script>
 
-    <title> testOnepage - Teresa </title>
+    <title> Vue相关问题记录 - Teresa </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -231,14 +233,20 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          testOnepage
+          Vue相关问题记录
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2018-08-14
+          2018-08-15
         </span>
+        
+          <div class="post-category">
+            
+              <a href="/teresa/categories/Vue/">Vue</a>
+            
+          </div>
         
         
       </div>
@@ -246,11 +254,29 @@
 
     
     
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#inupt输入框的change事件在失去焦点后触发"><span class="toc-text">inupt输入框的change事件在失去焦点后触发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue-input-file-多次上传不触发change事件问题"><span class="toc-text">vue input file 多次上传不触发change事件问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-父组件异步获取数据，子组件props获取不到"><span class="toc-text">Vue 父组件异步获取数据，子组件props获取不到</span></a></li></ol>
+    </div>
+  </div>
+
 
 
     <div class="post-content">
       
-        <p>this is my first page</p>
+        <h2 id="inupt输入框的change事件在失去焦点后触发"><a href="#inupt输入框的change事件在失去焦点后触发" class="headerlink" title="inupt输入框的change事件在失去焦点后触发"></a>inupt输入框的<code>change</code>事件在失去焦点后触发</h2><p>此时跟blur事件很像，查阅后的方案是将处理程序添加到input事件上面<br>参考链接<a href="https://forum.vuejs.org/t/v-on-change/8670" target="_blank" rel="noopener">https://forum.vuejs.org/t/v-on-change/8670</a></p>
+<h2 id="vue-input-file-多次上传不触发change事件问题"><a href="#vue-input-file-多次上传不触发change事件问题" class="headerlink" title="vue input file 多次上传不触发change事件问题"></a>vue input file 多次上传不触发change事件问题</h2><p>有一下几种方法：</p>
+<ul>
+<li>清空input的value值</li>
+<li>替换掉原来的input 渲染一个新的input</li>
+<li>将input放到一个表单里，change事件触发时将表单reset</li>
+<li>替换原input，渲染新input并重新绑定change事件（这个方法对我有效）</li>
+</ul>
+<p>参考链接<a href="https://www.cnblogs.com/exhuasted/p/6185874.html" target="_blank" rel="noopener">https://www.cnblogs.com/exhuasted/p/6185874.html</a></p>
+<h2 id="Vue-父组件异步获取数据，子组件props获取不到"><a href="#Vue-父组件异步获取数据，子组件props获取不到" class="headerlink" title="Vue 父组件异步获取数据，子组件props获取不到"></a>Vue 父组件异步获取数据，子组件props获取不到</h2><p>由于我子组件需要拿到props后做数据处理，但发现无论是放到data，还是mounted，props里面值还是undefined；</p>
+<p>查阅后了解到，异步请求数据有关；解决办法就是：</p>
+<p>引用子组件时，v-if先判断先props是否有值，比如<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;component-a v-<span class="keyword">if</span>=<span class="string">"dataList.length&gt;0"</span> :prop-a=<span class="string">"dataList"</span>/&gt;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -266,7 +292,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://littlefaye.gitee.io/teresa/2018/08/14/testOnepage/">https://littlefaye.gitee.io/teresa/2018/08/14/testOnepage/</a>
+      <a href="https://littlefaye.gitee.io/teresa/2018/08/15/about-vue/">https://littlefaye.gitee.io/teresa/2018/08/15/about-vue/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -284,16 +310,22 @@
     
       <footer class="post-footer">
         
+          <div class="post-tags">
+            
+              <a href="/teresa/tags/vue/">vue</a>
+            
+          </div>
+        
         
         
   <nav class="post-nav">
     
-      <a class="prev" href="/teresa/2018/08/14/hello-world/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">建立博客的过程</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
     
+      <a class="next" href="/teresa/2018/08/14/vue-cli/">
+        <span class="next-text nav-default">vue-cli项目部署到gitee Pages</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 

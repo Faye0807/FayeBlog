@@ -624,9 +624,9 @@ h6 {
   .post .post-content .headerlink:hover {
     border-bottom: 0; }
   .post .post-content .headerlink::before {
-    content: "";
+    content: "§";
     margin-right: 5px;
-    font-size: 1.1em;
+    font-size: .9em;
     color: #c05b4d; }
   .post .post-content a {
     color: #c05b4d;

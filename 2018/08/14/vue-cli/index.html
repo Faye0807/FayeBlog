@@ -17,10 +17,12 @@
 
 
 
-  <meta name="description" content="how to make a blog"/>
+  <meta name="description" content="通过 vue-cli 搭建的spa项目,可以部署到giteePages"/>
 
 
 
+
+  <meta name="keywords" content="vue vue-cli pages spa" />
 
 
 
@@ -40,7 +42,7 @@
 
 
 
-<link rel="canonical" href="https://littlefaye.gitee.io/teresa/2018/08/14/testOnepage/"/>
+<link rel="canonical" href="https://littlefaye.gitee.io/teresa/2018/08/14/vue-cli/"/>
 
 
 
@@ -97,7 +99,7 @@
   window.config = {"title":"Teresa","subtitle":null,"description":"about fe","author":"Teresa-哼哼","language":"zh-CN","timezone":null,"url":"https://littlefaye.gitee.io/teresa","root":"/teresa/","permalink":":year/:month/:day/:title/","permalink_defaults":null,"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":true,"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":null,"first_line_number":"always1"},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","per_page":10,"pagination_dir":"page","theme":"even","deploy":{"type":"git","repo":"https://gitee.com/littleFaye/Teresa.git"},"ignore":[],"keywords":null,"index_generator":{"per_page":10,"order_by":"-date","path":""},"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"category_generator":{"per_page":10},"tag_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"sanitize":false,"tables":true,"breaks":true,"smartLists":true,"smartypants":true,"modifyAnchors":"","autolink":true},"server":{"port":4000,"log":false,"ip":"0.0.0.0","compress":false,"header":true},"since":2015,"favicon":"/favicon.ico","rss":false,"menu":{"Home":"/","Archives":"/archives/","Tags":"/tags","Categories":"/categories","About":"/about"},"color":"Default","toc":true,"fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"1748711164@qq.com","stack-overflow":null,"twitter":null,"facebook":null,"linkedin":null,"google":null,"github":"https://github.com/Faye0807","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":null,"app_key":null},"baidu_analytics":"9b4723f0455add81c1300727d6fe2f0f","baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
 </script>
 
-    <title> testOnepage - Teresa </title>
+    <title> vue-cli项目部署到gitee Pages - Teresa </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -231,7 +233,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          testOnepage
+          vue-cli项目部署到gitee Pages
         
       </h1>
 
@@ -240,17 +242,38 @@
           2018-08-14
         </span>
         
+          <div class="post-category">
+            
+              <a href="/teresa/categories/Vue/">Vue</a>
+            
+          </div>
+        
         
       </div>
     </header>
 
     
     
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先-通过-vue-cli-搭建自己的vue项目"><span class="toc-text">首先 通过 vue-cli 搭建自己的vue项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更改-config-index-js-文件"><span class="toc-text">更改 config/index.js 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行-npm-run-build"><span class="toc-text">执行 npm run build</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署gitee-Pages"><span class="toc-text">部署gitee Pages</span></a></li></ol>
+    </div>
+  </div>
+
 
 
     <div class="post-content">
       
-        <p>this is my first page</p>
+        <blockquote>
+<p>通过 <code>vue-cli</code> 搭建的spa项目,可以部署到giteePages</p>
+</blockquote>
+<h2 id="首先-通过-vue-cli-搭建自己的vue项目"><a href="#首先-通过-vue-cli-搭建自己的vue项目" class="headerlink" title="首先 通过 vue-cli 搭建自己的vue项目"></a>首先 通过 vue-cli 搭建自己的vue项目</h2><p>确定 <code>npm run dev</code>可以正常启动项目<br>并将该项目放到 码云上</p>
+<h2 id="更改-config-index-js-文件"><a href="#更改-config-index-js-文件" class="headerlink" title="更改 config/index.js 文件"></a>更改 <code>config/index.js</code> 文件</h2><p>将给文件下 <code>build</code> 对象下的 <code>assetsPublicPath</code> 修改为 <code>./</code></p>
+<p><img src="/teresa/images/config_index.js.jpg" alt=""></p>
+<h2 id="执行-npm-run-build"><a href="#执行-npm-run-build" class="headerlink" title="执行 npm run build"></a>执行 <code>npm run build</code></h2><p>会生成一个<code>dist</code>文件<br>编译后提交推送代码（ps： 记得将dist文件从gitignore中移出）</p>
+<h2 id="部署gitee-Pages"><a href="#部署gitee-Pages" class="headerlink" title="部署gitee Pages"></a>部署gitee Pages</h2><p>部署的时候指定文件夹为<code>dist</code>即可</p>
+<p>部署成功后即可按照提示链接访问你的Vue页面</p>
 
       
     </div>
@@ -266,7 +289,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://littlefaye.gitee.io/teresa/2018/08/14/testOnepage/">https://littlefaye.gitee.io/teresa/2018/08/14/testOnepage/</a>
+      <a href="https://littlefaye.gitee.io/teresa/2018/08/14/vue-cli/">https://littlefaye.gitee.io/teresa/2018/08/14/vue-cli/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -284,16 +307,32 @@
     
       <footer class="post-footer">
         
+          <div class="post-tags">
+            
+              <a href="/teresa/tags/vue/">vue</a>
+            
+              <a href="/teresa/tags/vue-cli/">vue-cli</a>
+            
+              <a href="/teresa/tags/spa/">spa</a>
+            
+          </div>
+        
         
         
   <nav class="post-nav">
     
-      <a class="prev" href="/teresa/2018/08/14/hello-world/">
+      <a class="prev" href="/teresa/2018/08/15/about-vue/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">建立博客的过程</span>
+        <span class="prev-text nav-default">Vue相关问题记录</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
+    
+      <a class="next" href="/teresa/2018/08/14/hello-world/">
+        <span class="next-text nav-default">建立博客的过程</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 
