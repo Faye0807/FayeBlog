@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="记录设计js数据类型转换相关"/>
+
+
+
+
+  <meta name="keywords" content="js, 数据类型, Teresa" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/teresa/atom.xml" title="Teresa">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/teresa/favicon.ico?v=2.9.0" />
+
+
+
+<link rel="canonical" href="https://littlefaye.gitee.io/teresa/2018/08/21/js数据转换/"/>
+
+
+
+  <link rel="stylesheet" type="text/css" href="/teresa/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/teresa/lib/nprogress/nprogress.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="/teresa/css/style.css?v=2.9.0" />
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9b4723f0455add81c1300727d6fe2f0f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "q8I1nPpo7445tVF84mvOlAyj-gzGzoHsz",
+      appKey: "i9j12HoNltgi5uq4DLvonO0h"
+    });
+  </script>
+
+
+
+
+<script>
+  window.config = {"title":"Teresa","subtitle":null,"description":"about fe","author":"Teresa-哼哼","language":"zh-CN","timezone":null,"url":"https://littlefaye.gitee.io/teresa","root":"/teresa/","permalink":":year/:month/:day/:title/","permalink_defaults":null,"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":true,"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":null,"first_line_number":"always1"},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","per_page":10,"pagination_dir":"page","theme":"even","deploy":{"type":"git","repo":"https://gitee.com/littleFaye/Teresa.git"},"ignore":[],"keywords":null,"index_generator":{"per_page":10,"order_by":"-date","path":""},"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"category_generator":{"per_page":10},"tag_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"sanitize":false,"tables":true,"breaks":true,"smartLists":true,"smartypants":true,"modifyAnchors":"","autolink":true},"server":{"port":4000,"log":false,"ip":"0.0.0.0","compress":false,"header":true},"since":2015,"favicon":"/favicon.ico","rss":false,"menu":{"Home":"/","Archives":"/archives/","Tags":"/tags","Categories":"/categories","About":"/about"},"color":"Default","toc":true,"fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"1748711164@qq.com","stack-overflow":null,"twitter":null,"facebook":null,"linkedin":null,"google":null,"github":"https://github.com/Faye0807","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":"q8I1nPpo7445tVF84mvOlAyj-gzGzoHsz","app_key":"i9j12HoNltgi5uq4DLvonO0h"},"baidu_analytics":"9b4723f0455add81c1300727d6fe2f0f","baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
+</script>
+
+    <title> js数据转换 - Teresa </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/teresa/." class="logo">Teresa</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/teresa/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/teresa/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/teresa/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/teresa/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/teresa/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/teresa/." class="logo">Teresa</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          js数据转换
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-08-21
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/teresa/categories/Vue/">Vue</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/teresa/2018/08/21/js数据转换/"
+             data-title="js数据转换">
+            阅读次数 0
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#加减乘除运算"><span class="toc-text">加减乘除运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Number"><span class="toc-text">Number()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String"><span class="toc-text">String()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Boolean"><span class="toc-text">Boolean()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自动转换"><span class="toc-text">自动转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自动转换为布尔值"><span class="toc-text">自动转换为布尔值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动转换为字符串"><span class="toc-text">自动转换为字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动转换为数值"><span class="toc-text">自动转换为数值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#的隐形转换"><span class="toc-text">==的隐形转换</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h2 id="加减乘除运算"><a href="#加减乘除运算" class="headerlink" title="加减乘除运算"></a>加减乘除运算</h2><blockquote>
+<ul>
+<li>运算符会将其两边非数字类型的值经过 <code>Number</code> 转换为数值类型</li>
+<li><code>字符串 + 数值</code> 时，返回拼接字符串</li>
+<li><code>字符串 - 或 * 或 / 或 % 数值</code> 时，返回数值类型，字符串Number转换失败返回 <code>NaN</code></li>
+<li>一切与<code>NaN</code>有关的运算操作，均返回 <code>NaN</code></li>
+</ul>
+</blockquote>
+<h2 id="Number"><a href="#Number" class="headerlink" title="Number()"></a>Number()</h2><blockquote>
+<p><code>Number</code> 转换相比 <code>parseInt</code>、<code>parseFloat</code> 要相对严格的多，只要存在抓换失败的因素即返回 <code>NaN</code></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Number(123) // 123</span><br><span class="line">Number(&apos;123&apos;) // 123</span><br><span class="line">Number(&apos;123sss&apos;) // NaN</span><br><span class="line">Number(undefined) // NaN</span><br><span class="line">Number(null) // 0</span><br><span class="line">Number(false) // 0</span><br><span class="line">Number(true) // 1</span><br><span class="line">Number(&apos;&apos;) // 0</span><br><span class="line">Number([1, 2, 3]) // NaN</span><br><span class="line">Number([5]) // 5</span><br><span class="line">Number(&#123;&#125;) // NaN</span><br><span class="line">// Number转换对象时，先调用对象的valueOf方法，如果该方法返回对象，</span><br><span class="line">// 则再调用对象的toString方法，如若toString返回对象则Number报错；</span><br><span class="line">parseFloat(&apos;12.00a&apos;) //12</span><br><span class="line">parseInt(&apos;12.001a&apos;) //12</span><br><span class="line">parseFloat(&apos;12.001a&apos;) //12.001</span><br><span class="line">parseFloat(&apos;a12.001a&apos;) //NaN</span><br><span class="line">parseFloat(&apos;a12.001&apos;) //NaN</span><br><span class="line">parseInt(&apos;12.001&apos;) //12</span><br></pre></td></tr></table></figure>
+<h2 id="String"><a href="#String" class="headerlink" title="String()"></a>String()</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String(123) // &quot;123&quot;</span><br><span class="line">String(&apos;abc&apos;) // &quot;abc&quot;</span><br><span class="line">String(true) // &quot;true&quot;</span><br><span class="line">String(undefined) // &quot;undefined&quot;</span><br><span class="line">String(null) // &quot;null&quot;</span><br><span class="line">String([1,2,3]) // &quot;1,2,3&quot;</span><br><span class="line">String(&#123;a: 1&#125;) // &quot;[object Object]&quot;</span><br><span class="line">// String转换对象时，同Number，只不过调用valueOf、toString的顺序相反，先toString在valueOf</span><br></pre></td></tr></table></figure>
+<h2 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean()"></a>Boolean()</h2><blockquote>
+<p>除了以下五个值的转换结果为 <code>false</code>，其他的值全部为 <code>true</code></p>
+<ul>
+<li>undefined</li>
+<li>null</li>
+<li>-0或+0</li>
+<li>NaN</li>
+<li>‘’（空)<br>注意点是 <code>Boolean([])</code> =&gt; <code>true</code>，但是<code>[] == true</code> =&gt; <code>false</code>; <code>{} == true</code> 报错</li>
+</ul>
+</blockquote>
+<h2 id="自动转换"><a href="#自动转换" class="headerlink" title="自动转换"></a>自动转换</h2><blockquote>
+<p>自动转换的规则是这样的：预期什么类型的值，就调用该类型的转换函数。比如，某个位置预期为字符串，就调用String函数进行转换。如果该位置即可以是字符串，也可能是数值，那么默认转为数值。</p>
+</blockquote>
+<h3 id="自动转换为布尔值"><a href="#自动转换为布尔值" class="headerlink" title="自动转换为布尔值"></a>自动转换为布尔值</h3><blockquote>
+<p>比如if的判断语句，三元运算符；他们内部均调用Boolean隐式转换数据类型</p>
+</blockquote>
+<h3 id="自动转换为字符串"><a href="#自动转换为字符串" class="headerlink" title="自动转换为字符串"></a>自动转换为字符串</h3><blockquote>
+<p>主要是字符串的拼接， <code>&#39;string&#39; + {}</code>等类似表达式加号后面将转换为字符串<br>规则： 复杂类型 =》 原始类型 =》 string</p>
+</blockquote>
+<h3 id="自动转换为数值"><a href="#自动转换为数值" class="headerlink" title="自动转换为数值"></a>自动转换为数值</h3><blockquote>
+<p>系统在需要出现数值的地方，通过Number因式转换数据类型</p>
+<p>除了加法运算符（+）有可能把运算子转为字符串，其他运算符都会把运算子自动转成数值。<br>一元运算符也存在隐式转换： <code>-true</code> =&gt; <code>-1</code></p>
+</blockquote>
+<h3 id="的隐形转换"><a href="#的隐形转换" class="headerlink" title="==的隐形转换"></a><code>==</code>的隐形转换</h3><blockquote>
+<ul>
+<li>如果比较的两者中有布尔值 Boolean，会把 Boolean 先转换为对应的 Number，即 0 和 1，然后进行比较。</li>
+<li>如果比较的双方中有一方为 Boolean，一方为 String时，则会先将双方转换为数字，然后进行比较。</li>
+<li>如果比较的双方中有一方为 Number，一方为 String时，会把 String 通过 Number() 方法转换为数字，然后进行比较。</li>
+<li>如果比较的双方中有一方为 Number，一方为Object时，则会调用 Number 方法将Object转换为数字，然后进行比较。</li>
+</ul>
+<p>其实总结来看，尤其是复杂类型的数据，隐式转换可能不止一次，比如下例中的 变量a，<code>a == 1</code> 比较时，a的<code>valueOf</code>返回<code>&#39;1&#39;</code></p>
+<p>此时就相当于 <code>&#39;1&#39; == 1</code> 的比较，<code>&#39;1&#39;</code>要继续转换成数字1与其比较</p>
+<p>给我的感觉就是在不存在string的情况下，一切都在向number转化</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;a: 222&#125;</span><br><span class="line">a == 1 //false</span><br><span class="line">a.valueOf() //&#123;a: 222&#125;</span><br><span class="line">a.toString() //&quot;[object Object]&quot;</span><br><span class="line">a == &quot;[object Object]&quot; //true</span><br><span class="line">a.valueOf = function()&#123;return &apos;1&apos;&#125;</span><br><span class="line">a == &quot;[object Object]&quot; //false</span><br><span class="line">a == 1 //true</span><br><span class="line">a.toString = function() &#123;return &apos;2&apos;&#125;</span><br><span class="line">a == 1 //true</span><br><span class="line">1 == a  //true</span><br><span class="line">2 == a  //false</span><br><span class="line">a == &apos;1&apos; //true</span><br><span class="line">a == &apos;2&apos; //false</span><br><span class="line">=================</span><br><span class="line">var b = [1]</span><br><span class="line">b==1 //true</span><br><span class="line">b==&apos;1&apos; //true</span><br><span class="line">b.valueOf() //[1]</span><br><span class="line">b.toString() //&quot;1&quot;</span><br><span class="line">b.valueOf = function()&#123;return &apos;2&apos;&#125;</span><br><span class="line">b==&apos;1&apos; //false</span><br><span class="line">b==&apos;2&apos; //true</span><br><span class="line">// =========================以上总结Object + string 或 Object + number 是先valueOf在toString</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>本片文章参考自<a href="https://wangdoc.com/javascript/features/conversion.html" target="_blank" rel="noopener">https://wangdoc.com/javascript/features/conversion.html</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://littlefaye.gitee.io/teresa">Teresa-哼哼</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://littlefaye.gitee.io/teresa/2018/08/21/js数据转换/">https://littlefaye.gitee.io/teresa/2018/08/21/js数据转换/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/teresa/tags/js/">js</a>
+            
+              <a href="/teresa/tags/数据类型/">数据类型</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/teresa/2018/08/20/css居中/">
+        <span class="next-text nav-default">css居中</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:1748711164@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/Faye0807" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Teresa-哼哼</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/teresa/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/teresa/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/teresa/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/teresa/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/teresa/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/teresa/js/src/even.js?v=2.9.0"></script>
+
+  </body>
+</html>
