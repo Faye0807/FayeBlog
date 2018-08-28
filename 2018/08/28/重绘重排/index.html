@@ -17,10 +17,12 @@
 
 
 
-  <meta name="description" content="about fe"/>
+  <meta name="description" content="梳理渲染树构建、布局绘制以及重绘重排"/>
 
 
 
+
+  <meta name="keywords" content="重绘重排、渲染树构建布局和绘制" />
 
 
 
@@ -40,7 +42,7 @@
 
 
 
-<link rel="canonical" href="https://littlefaye.gitee.io/teresa/archives/2018/"/>
+<link rel="canonical" href="https://littlefaye.gitee.io/teresa/2018/08/28/重绘重排/"/>
 
 
 
@@ -105,11 +107,7 @@
   window.config = {"title":"Teresa","subtitle":null,"description":"about fe","author":"Teresa-哼哼","language":"zh-CN","timezone":null,"url":"https://littlefaye.gitee.io/teresa","root":"/teresa/","permalink":":year/:month/:day/:title/","permalink_defaults":null,"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":true,"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":null},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","per_page":10,"pagination_dir":"page","theme":"even","deploy":{"type":"git","repo":"https://gitee.com/littleFaye/Teresa.git"},"ignore":[],"keywords":null,"index_generator":{"per_page":10,"order_by":"-date","path":""},"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"category_generator":{"per_page":10},"tag_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"sanitize":false,"tables":true,"breaks":true,"smartLists":true,"smartypants":true,"modifyAnchors":"","autolink":true},"server":{"port":4000,"log":false,"ip":"0.0.0.0","compress":false,"header":true},"since":2015,"favicon":"/favicon.ico","rss":false,"menu":{"Home":"/","Archives":"/archives/","Tags":"/tags","Categories":"/categories","About":"/about"},"color":"Default","toc":true,"fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"1748711164@qq.com","stack-overflow":null,"twitter":null,"facebook":null,"linkedin":null,"google":null,"github":"https://github.com/Faye0807","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":"q8I1nPpo7445tVF84mvOlAyj-gzGzoHsz","app_key":"i9j12HoNltgi5uq4DLvonO0h"},"baidu_analytics":"9b4723f0455add81c1300727d6fe2f0f","baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
 </script>
 
-    <title>
-  
-    归档 - Teresa
-  
-</title>
+    <title> 重绘重排 - Teresa </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -239,215 +237,165 @@
           <div id="content" class="content">
             
   
-  <section id="archive" class="archive">
-    
-      
-        <div class="archive-title">
-          <span class="archive-post-counter">
-            目前共计 9 篇日志
-          </span>
-        </div>
-      
-    
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          重绘重排
+        
+      </h1>
 
-    
-      
+      <div class="post-meta">
+        <span class="post-time">
+          2018-08-28
+        </span>
         
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year">2018</h2>
+          <div class="post-category">
+            
+              <a href="/teresa/categories/性能优化/">性能优化</a>
+            
           </div>
         
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            08-28
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/teresa/2018/08/28/重绘重排/" class="archive-post-link">
-            重绘重排
-          </a>
-        </span>
+        
+        <div class="post-visits"
+             data-url="/teresa/2018/08/28/重绘重排/"
+             data-title="重绘重排">
+            阅读次数 0
+          </div>
+        
       </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#渲染过程"><span class="toc-text">渲染过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#生成渲染树过程："><span class="toc-text">生成渲染树过程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#布局（自动重排）"><span class="toc-text">布局（自动重排）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绘制或栅格化"><span class="toc-text">绘制或栅格化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重绘重排"><span class="toc-text">重绘重排</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#减少重绘（repaint）重排（reflow）"><span class="toc-text">减少重绘（repaint）重排（reflow）</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>了解重绘重排前，应当先了解浏览器绘制页面的过程</p>
+</blockquote>
+<h2 id="渲染过程"><a href="#渲染过程" class="headerlink" title="渲染过程"></a>渲染过程</h2><blockquote>
+<ul>
+<li>解析HTML文件，生成DOM树</li>
+<li>解析CSS文件，生成CSSOM</li>
+<li>结合DOM和CSSOM，生成渲染树(包含页面所有可见节点及其计算样式)</li>
+<li>根据渲染树生成布局（layout）(将渲染树的所有节点进行平面合成，各个节点在设备视口的确切位置及大小，即获得每个节点的几何信息)</li>
+<li>绘制(将布局（各个节点）绘制在屏幕上)</li>
+</ul>
+</blockquote>
+<p><img src="/teresa/images/render.png" alt="渲染过程"></p>
+<h3 id="生成渲染树过程："><a href="#生成渲染树过程：" class="headerlink" title="生成渲染树过程："></a>生成渲染树过程：</h3><blockquote>
+<ul>
+<li>从DOM树的根节点进行遍历每个可见的节点<ul>
+<li>某些节点不可见（例如脚本标记、元标记等），因为它们不会体现在渲染输出中，所以会被忽略。</li>
+<li>某些节点通过 CSS 隐藏，因此在渲染树中也会被忽略，例如，节点上设置了“display: none”属性。</li>
+</ul>
+</li>
+<li>为每个节点找到他适配的CSSOM，并应用</li>
+<li>发射该节点及其内容和计算样式</li>
+</ul>
+</blockquote>
+<h3 id="布局（自动重排）"><a href="#布局（自动重排）" class="headerlink" title="布局（自动重排）"></a>布局（自动重排）</h3><blockquote>
+<ul>
+<li>浏览器从渲染树的根节点开始进行遍历</li>
+<li>布局流程的输出是一个“盒模型”，它会精确地捕获每个元素在视口内的确切位置和尺寸：所有相对测量值都转换为屏幕上的绝对像素</li>
+</ul>
+</blockquote>
+<h3 id="绘制或栅格化"><a href="#绘制或栅格化" class="headerlink" title="绘制或栅格化"></a>绘制或栅格化</h3><p>我们知道了哪些节点可见、它们的计算样式以及几何信息，我们终于可以将这些信息传递给最后一个阶段：将渲染树中的每个节点转换成屏幕上的实际像素，这一步就是绘制。</p>
+<p>执行渲染树构建、布局和绘制所需的时间将取决于文档大小、应用的样式，以及运行文档的设备：文档越大，浏览器需要完成的工作就越多；样式越复杂，绘制需要的时间就越长（例如，单色的绘制开销“较小”，而阴影的计算和渲染开销则要“大得多”）。</p>
+<h2 id="重绘重排"><a href="#重绘重排" class="headerlink" title="重绘重排"></a>重绘重排</h2><p>当改变DOM和CSS时将会引起重绘重排；</p>
+<ul>
+<li>当影响了页面的布局，元素的几何属性的时候会引起重排（比如字体大小改变，元素位置的改变）</li>
+<li>除了上面以外的（比如颜色的变话）会引起重绘</li>
+</ul>
+<p>重排一定会重绘，而重绘不一定会重排</p>
+<h3 id="减少重绘（repaint）重排（reflow）"><a href="#减少重绘（repaint）重排（reflow）" class="headerlink" title="减少重绘（repaint）重排（reflow）"></a>减少重绘（repaint）重排（reflow）</h3><ul>
+<li>应尽量减少更改DOM和CSS的次数，通过更改class来改变样式</li>
+<li>将需要修改DOM脱离文档流<ul>
+<li>隐藏元素，修改，重新显示。</li>
+<li>使用文档片断（document fragment），在当前DOM外构建一个子树，再把它插入文档中。</li>
+<li>把原始元素拷贝到脱离文档的节点中，修改后在把原始元素替换掉。</li>
+</ul>
+</li>
+<li><code>transform</code>和<code>opacity</code>不会触发重绘,应多使用这两个属性，减少<code>position</code>的使用</li>
+<li><a href="https://csstriggers.com/" target="_blank" rel="noopener">https://csstriggers.com/</a> 这里统计了各个css属性是否会触发重绘重排</li>
+</ul>
+<blockquote>
+<p>参考链接：<a href="http://www.ruanyifeng.com/blog/2015/09/web-page-performance-in-depth.html" target="_blank" rel="noopener">网页性能管理详解</a></p>
+<p>参考链接：<a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=zh-cn" target="_blank" rel="noopener">渲染树构建、布局及绘制</a></p>
+</blockquote>
+
+      
+    </div>
+
     
       
-        
-        
-
-        
       
 
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            08-23
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/teresa/2018/08/23/js高效更改对象属性名/" class="archive-post-link">
-            js高效更改对象属性名
-          </a>
-        </span>
-      </div>
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://littlefaye.gitee.io/teresa">Teresa-哼哼</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://littlefaye.gitee.io/teresa/2018/08/28/重绘重排/">https://littlefaye.gitee.io/teresa/2018/08/28/重绘重排/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
     
-      
-        
-        
 
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            08-22
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/teresa/2018/08/22/router和route/" class="archive-post-link">
-            router和route
-          </a>
-        </span>
-      </div>
     
-      
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/teresa/tags/性能优化/">性能优化</a>
+            
+          </div>
         
         
-
         
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            08-21
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/teresa/2018/08/21/js数据转换/" class="archive-post-link">
-            js数据转换
-          </a>
-        </span>
-      </div>
+  <nav class="post-nav">
     
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            08-20
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/teresa/2018/08/20/css居中/" class="archive-post-link">
-            css居中
-          </a>
-        </span>
-      </div>
     
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            08-15
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/teresa/2018/08/15/about-vue/" class="archive-post-link">
-            Vue相关问题记录
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            08-14
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/teresa/2018/08/14/vue-cli/" class="archive-post-link">
-            vue-cli项目部署到gitee Pages
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            08-14
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/teresa/2018/08/14/hello-world/" class="archive-post-link">
-            建立博客的过程
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            08-14
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/teresa/2018/08/14/testOnepage/" class="archive-post-link">
-            testOnepage
-          </a>
-        </span>
-      </div>
-    
-  </section>
-
-  
-  <nav class="pagination">
-    
+      <a class="next" href="/teresa/2018/08/23/js高效更改对象属性名/">
+        <span class="next-text nav-default">js高效更改对象属性名</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 
+      </footer>
+    
+
+  </article>
 
 
           </div>
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
       </main>
@@ -528,6 +476,11 @@
     </div>
 
     
+  
+  
+
+  
+
 
 
     
