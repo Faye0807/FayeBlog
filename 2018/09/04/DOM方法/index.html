@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="一些DOM的操作方法及属性"/>
+
+
+
+
+  <meta name="keywords" content="一些DOM的操作方法及属性" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/teresa/atom.xml" title="Teresa">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/teresa/favicon.ico?v=2.9.0" />
+
+
+
+<link rel="canonical" href="https://littlefaye.gitee.io/teresa/2018/09/04/DOM方法/"/>
+
+
+
+  <link rel="stylesheet" type="text/css" href="/teresa/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/teresa/lib/nprogress/nprogress.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="/teresa/css/style.css?v=2.9.0" />
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9b4723f0455add81c1300727d6fe2f0f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "q8I1nPpo7445tVF84mvOlAyj-gzGzoHsz",
+      appKey: "i9j12HoNltgi5uq4DLvonO0h"
+    });
+  </script>
+
+
+
+
+<script>
+  window.config = {"title":"Teresa","subtitle":null,"description":"about fe","author":"Teresa-哼哼","language":"zh-CN","timezone":null,"url":"https://littlefaye.gitee.io/teresa","root":"/teresa/","permalink":":year/:month/:day/:title/","permalink_defaults":null,"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":true,"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":null,"first_line_number":"always1"},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","per_page":10,"pagination_dir":"page","theme":"even","deploy":{"type":"git","repo":"https://gitee.com/littleFaye/Teresa.git"},"ignore":[],"keywords":null,"index_generator":{"per_page":10,"order_by":"-date","path":""},"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"tag_generator":{"per_page":10},"category_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"sanitize":false,"tables":true,"breaks":true,"smartLists":true,"smartypants":true,"modifyAnchors":"","autolink":true},"server":{"port":4000,"log":false,"ip":"0.0.0.0","compress":false,"header":true},"since":2015,"favicon":"/favicon.ico","rss":false,"menu":{"Home":"/","Archives":"/archives/","Tags":"/tags","Categories":"/categories","About":"/about"},"color":"Default","toc":true,"fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"1748711164@qq.com","stack-overflow":null,"twitter":null,"facebook":null,"linkedin":null,"google":null,"github":"https://github.com/Faye0807","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":"q8I1nPpo7445tVF84mvOlAyj-gzGzoHsz","app_key":"i9j12HoNltgi5uq4DLvonO0h"},"baidu_analytics":"9b4723f0455add81c1300727d6fe2f0f","baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
+</script>
+
+    <title> 常用DOM操作方法及属性 - Teresa </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/teresa/." class="logo">Teresa</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/teresa/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/teresa/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/teresa/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/teresa/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/teresa/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/teresa/." class="logo">Teresa</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          常用DOM操作方法及属性
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-09-04
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/teresa/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/teresa/2018/09/04/DOM方法/"
+             data-title="常用DOM操作方法及属性">
+            阅读次数 0
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#汇总js操作DOM的常用方法及属性"><span class="toc-text">汇总js操作DOM的常用方法及属性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常用方法"><span class="toc-text">常用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#getElementById"><span class="toc-text">getElementById</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getElementsByTagName"><span class="toc-text">getElementsByTagName</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getElementsByClassName"><span class="toc-text">getElementsByClassName</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#querySelector"><span class="toc-text">querySelector</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#querySelectorAll"><span class="toc-text">querySelectorAll</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getAttribute-只能通过元素节点调用"><span class="toc-text">getAttribute 只能通过元素节点调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#setAttribute-只能通过元素节点调用"><span class="toc-text">setAttribute 只能通过元素节点调用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常用元素节点对象的属性"><span class="toc-text">常用元素节点对象的属性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#nodeType（返回数字）"><span class="toc-text">nodeType（返回数字）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nodeValue"><span class="toc-text">nodeValue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#children-和-childNodes"><span class="toc-text">children 和 childNodes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#firstChild-和-firstElementChild"><span class="toc-text">firstChild 和 firstElementChild</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lastChild-和-lastElementChild"><span class="toc-text">lastChild 和 lastElementChild</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h1 id="汇总js操作DOM的常用方法及属性"><a href="#汇总js操作DOM的常用方法及属性" class="headerlink" title="汇总js操作DOM的常用方法及属性"></a>汇总js操作DOM的常用方法及属性</h1><blockquote>
+<p>获取元素节点的方法，返回包含元素节点的 <code>对象</code> 或者 <code>对象数组</code></p>
+<p>没有标注说明，则方法可以用于 <code>document</code> 和 元素</p>
+</blockquote>
+<h1 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h1><h2 id="getElementById"><a href="#getElementById" class="headerlink" title="getElementById"></a><code>getElementById</code></h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取id为myId的元素</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'myId'</span>);</span><br></pre></td></tr></table></figure>
+<p>只可以用于 <code>document</code>，而不可用于其他元素后</p>
+<h2 id="getElementsByTagName"><a href="#getElementsByTagName" class="headerlink" title="getElementsByTagName"></a><code>getElementsByTagName</code></h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取所有的div元素</span></span><br><span class="line">element.getElementsByTagName(<span class="string">'div'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="getElementsByClassName"><a href="#getElementsByClassName" class="headerlink" title="getElementsByClassName"></a><code>getElementsByClassName</code></h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取所有class值为myClass的元素</span></span><br><span class="line">element.getElementsByClassName(<span class="string">'myClass'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="querySelector"><a href="#querySelector" class="headerlink" title="querySelector"></a><code>querySelector</code></h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 接受与css选择器同样规则的字符串参数 如下：返回 id 为 myid 元素下的第一个类为 myclass 的元素对象</span></span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#myid .myclass'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="querySelectorAll"><a href="#querySelectorAll" class="headerlink" title="querySelectorAll"></a><code>querySelectorAll</code></h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 接受与css选择器同样规则的字符串参数 如下：返回 id 为 myid 元素下的所有类为 myclass 的数组对象</span></span><br><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">'#myid .myclass'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="getAttribute-只能通过元素节点调用"><a href="#getAttribute-只能通过元素节点调用" class="headerlink" title="getAttribute 只能通过元素节点调用"></a><code>getAttribute</code> 只能通过元素节点调用</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取 element 元素的title 属性值</span></span><br><span class="line">element.getAttribute(<span class="string">'title'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="setAttribute-只能通过元素节点调用"><a href="#setAttribute-只能通过元素节点调用" class="headerlink" title="setAttribute 只能通过元素节点调用"></a><code>setAttribute</code> 只能通过元素节点调用</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置 element 元素的title 属性值</span></span><br><span class="line">element.setAttribute(<span class="string">'title'</span>, <span class="string">'myTitle'</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>读取和设置元素的属性其实也可以直接通过元素节点对象来实现</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ele = <span class="built_in">document</span>.querySelector(<span class="string">'#myid'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(ele.title);</span><br><span class="line">ele.className = <span class="string">'myClass'</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="常用元素节点对象的属性"><a href="#常用元素节点对象的属性" class="headerlink" title="常用元素节点对象的属性"></a>常用元素节点对象的属性</h1><h2 id="nodeType（返回数字）"><a href="#nodeType（返回数字）" class="headerlink" title="nodeType（返回数字）"></a><code>nodeType</code>（返回数字）</h2><ul>
+<li>1：元素节点</li>
+<li>2：属性节点</li>
+<li>3：文本节点</li>
+</ul>
+<h2 id="nodeValue"><a href="#nodeValue" class="headerlink" title="nodeValue"></a><code>nodeValue</code></h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般会返回 文本内容 或 大写的标签名</span></span><br><span class="line"><span class="comment">// 比如 DIV、 一段空格（多是来自代码间的空格）</span></span><br></pre></td></tr></table></figure>
+<h2 id="children-和-childNodes"><a href="#children-和-childNodes" class="headerlink" title="children 和 childNodes"></a><code>children</code> 和 <code>childNodes</code></h2><ul>
+<li><code>childen</code> 返回元素的所有子元素节点（HTMLList）</li>
+<li><code>childNodes</code> 返回元素的所有子节点（NodesList）</li>
+</ul>
+<h2 id="firstChild-和-firstElementChild"><a href="#firstChild-和-firstElementChild" class="headerlink" title="firstChild 和 firstElementChild"></a><code>firstChild</code> 和 <code>firstElementChild</code></h2><ul>
+<li><code>firstChild</code> 返回第一个子节点</li>
+<li><code>firstElementChild</code> 返回第一个子元素节点</li>
+</ul>
+<h2 id="lastChild-和-lastElementChild"><a href="#lastChild-和-lastElementChild" class="headerlink" title="lastChild 和 lastElementChild"></a><code>lastChild</code> 和 <code>lastElementChild</code></h2><ul>
+<li><code>lastChild</code> 返回最后一个子节点</li>
+<li><code>lastElementChild</code> 返回最后一个子元素节点</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://littlefaye.gitee.io/teresa">Teresa-哼哼</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://littlefaye.gitee.io/teresa/2018/09/04/DOM方法/">https://littlefaye.gitee.io/teresa/2018/09/04/DOM方法/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/teresa/tags/js/">js</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/teresa/2018/08/28/浏览器工作原理/">
+        <span class="next-text nav-default">浏览器工作原理</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:1748711164@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/Faye0807" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Teresa-哼哼</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/teresa/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/teresa/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/teresa/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/teresa/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/teresa/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/teresa/js/src/even.js?v=2.9.0"></script>
+
+  </body>
+</html>
