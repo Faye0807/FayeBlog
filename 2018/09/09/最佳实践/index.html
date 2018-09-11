@@ -17,12 +17,12 @@
 
 
 
-  <meta name="description" content="this.$router与this.$route的区别"/>
+  <meta name="description" content="JavaScript DOM编程艺术的最佳实践章节整理"/>
 
 
 
 
-  <meta name="keywords" content="vue, Teresa" />
+  <meta name="keywords" content="JavaScript DOM编程艺术的最佳实践章节整理" />
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="https://littlefaye.gitee.io/teresa/2018/08/22/router和route/"/>
+<link rel="canonical" href="https://littlefaye.gitee.io/teresa/2018/09/09/最佳实践/"/>
 
 
 
@@ -107,7 +107,7 @@
   window.config = {"title":"Teresa","subtitle":null,"description":"about fe","author":"Teresa-哼哼","language":"zh-CN","timezone":null,"url":"https://littlefaye.gitee.io/teresa","root":"/teresa/","permalink":":year/:month/:day/:title/","permalink_defaults":null,"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":true,"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":null,"first_line_number":"always1"},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","per_page":10,"pagination_dir":"page","theme":"even","deploy":{"type":"git","repo":"https://gitee.com/littleFaye/Teresa.git"},"ignore":[],"keywords":null,"index_generator":{"per_page":10,"order_by":"-date","path":""},"category_generator":{"per_page":10},"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"tag_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"sanitize":false,"tables":true,"breaks":true,"smartLists":true,"smartypants":true,"modifyAnchors":"","autolink":true},"server":{"port":4000,"log":false,"ip":"0.0.0.0","compress":false,"header":true},"since":2015,"favicon":"/favicon.ico","rss":false,"menu":{"Home":"/","Archives":"/archives/","Tags":"/tags","Categories":"/categories","About":"/about"},"color":"Default","toc":true,"fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"1748711164@qq.com","stack-overflow":null,"twitter":null,"facebook":null,"linkedin":null,"google":null,"github":"https://github.com/Faye0807","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":"q8I1nPpo7445tVF84mvOlAyj-gzGzoHsz","app_key":"i9j12HoNltgi5uq4DLvonO0h"},"baidu_analytics":"9b4723f0455add81c1300727d6fe2f0f","baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
 </script>
 
-    <title> router和route - Teresa </title>
+    <title> 最佳实践 - Teresa </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -241,25 +241,25 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          router和route
+          最佳实践
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2018-08-22
+          2018-09-09
         </span>
         
           <div class="post-category">
             
-              <a href="/teresa/categories/Vue/">Vue</a>
+              <a href="/teresa/categories/性能优化/">性能优化</a>
             
           </div>
         
         
         <div class="post-visits"
-             data-url="/teresa/2018/08/22/router和route/"
-             data-title="router和route">
+             data-url="/teresa/2018/09/09/最佳实践/"
+             data-title="最佳实践">
             阅读次数 0
           </div>
         
@@ -271,7 +271,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#this-route"><span class="toc-text">this.$route</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#this-router"><span class="toc-text">this.$router</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#读JavaScript-DOM编程艺术-笔记"><span class="toc-text">读JavaScript DOM编程艺术 笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#平稳退化"><span class="toc-text">平稳退化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#渐进增强"><span class="toc-text">渐进增强</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#向后兼容"><span class="toc-text">向后兼容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#性能考虑"><span class="toc-text">性能考虑</span></a></li></ol></li></ol>
     </div>
   </div>
 
@@ -279,15 +279,32 @@
 
     <div class="post-content">
       
-        <blockquote>
-<p><code>this.$router</code>访问路由器，<code>this.$route</code>访问当前路由</p>
-<p><code>this.$router.history.current === this.$route</code></p>
-<p><a href="https://router.vuejs.org/zh/guide/essentials/navigation.html" target="_blank" rel="noopener">参考链接</a></p>
+        <h2 id="读JavaScript-DOM编程艺术-笔记"><a href="#读JavaScript-DOM编程艺术-笔记" class="headerlink" title="读JavaScript DOM编程艺术 笔记"></a>读JavaScript DOM编程艺术 笔记</h2><h3 id="平稳退化"><a href="#平稳退化" class="headerlink" title="平稳退化"></a>平稳退化</h3><blockquote>
+<p>所谓平稳退化就是说：虽然某些方法不可用，但是最基本的操作仍能顺利完成</p>
+<p>比如在网页不支持JavaScript的情况下也能正常工作</p>
 </blockquote>
-<h3 id="this-route"><a href="#this-route" class="headerlink" title="this.$route"></a>this.$route</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  fullPath: <span class="string">"/a/b/9567216?c=1#one"</span>,</span><br><span class="line">  hash: <span class="string">"#one"</span>,</span><br><span class="line">  matched: [&#123;…&#125;],</span><br><span class="line">  meta: &#123;&#125;,</span><br><span class="line">  name: <span class="string">"a-b-id"</span>,</span><br><span class="line">  params: &#123;<span class="attr">id</span>: <span class="string">"9567216"</span>&#125;,</span><br><span class="line">  path: <span class="string">"/a/b/9567216"</span>,</span><br><span class="line">  query: &#123;<span class="attr">c</span>: <span class="string">"1"</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="this-router"><a href="#this-router" class="headerlink" title="this.$router"></a>this.$router</h3><p>主要应用他的方法导航链接</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 前进 n 个历史记录</span><br><span class="line">this.$router.go(n)</span><br><span class="line">// 接受字符串</span><br><span class="line">this.$router.push(&apos;/login&apos;);</span><br><span class="line">// 不会产生历史记录</span><br><span class="line">this.$router.replace(&apos;/login&apos;);</span><br><span class="line">// 或接受一个对象</span><br><span class="line">this.$router.push(&#123;path: `user/$&#123;id&#125;`, query:&#123;name: &apos;lee&apos;&#125;&#125;)</span><br></pre></td></tr></table></figure>
-<p>注意的是：传入一个对象时，如果存在 <code>path</code> 的时候，<code>param</code>参数将被忽略，应该将 <code>param</code> 部分动态拼接到 <code>path</code> 中</p>
+<h3 id="渐进增强"><a href="#渐进增强" class="headerlink" title="渐进增强"></a>渐进增强</h3><blockquote>
+<p>所谓“渐进增强”就是用一些额外的信息，去包裹原始数据。</p>
+<p>按照渐进增强的原则创造出来的页面都符合平稳退化的原则</p>
+</blockquote>
+<h3 id="向后兼容"><a href="#向后兼容" class="headerlink" title="向后兼容"></a>向后兼容</h3><blockquote>
+<p>比如当浏览器不支持JavaScript的部分语法的时候，我们可以使用对象检测方法，避免因浏览器不支持而出现问题；从而，让网页支持一些“老”浏览器的正常运行</p>
+</blockquote>
+<h3 id="性能考虑"><a href="#性能考虑" class="headerlink" title="性能考虑"></a>性能考虑</h3><blockquote>
+<p>脚本对web应用整体性能的影响</p>
+</blockquote>
+<ul>
+<li>尽量少访问DOM和尽量减少标记</li>
+<li>合并和放置脚本<ul>
+<li>一般来说，根据http规范，浏览器每次从同一个域名中最多能同时加载2个文件（但是，现在已经发展到可最多请求6个）；</li>
+</ul>
+</li>
+<li>下载脚本期间，也不会下载其他文件，所有其他文件要在等待脚本下载完毕后下载；（现在有async异步加载属性）</li>
+<li>压缩脚本<ul>
+<li>所谓压缩脚本，就是将不必要的字节比如空格注释统统删除。</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -303,7 +320,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://littlefaye.gitee.io/teresa/2018/08/22/router和route/">https://littlefaye.gitee.io/teresa/2018/08/22/router和route/</a>
+      <a href="https://littlefaye.gitee.io/teresa/2018/09/09/最佳实践/">https://littlefaye.gitee.io/teresa/2018/09/09/最佳实践/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -323,7 +340,7 @@
         
           <div class="post-tags">
             
-              <a href="/teresa/tags/vue/">vue</a>
+              <a href="/teresa/tags/前端/">前端</a>
             
           </div>
         
@@ -331,15 +348,9 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/teresa/2018/08/23/js高效更改对象属性名/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">js高效更改对象属性名</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
     
-    
-      <a class="next" href="/teresa/2018/08/21/js数据转换/">
-        <span class="next-text nav-default">js数据转换</span>
+      <a class="next" href="/teresa/2018/09/04/DOM方法/">
+        <span class="next-text nav-default">常用DOM操作方法及属性</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
