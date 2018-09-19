@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="读图解HTTP笔记"/>
+
+
+
+
+  <meta name="keywords" content="读图解HTTP笔记" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/teresa/atom.xml" title="Teresa">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/teresa/favicon.ico?v=2.9.0" />
+
+
+
+<link rel="canonical" href="https://littlefaye.gitee.io/teresa/2018/09/11/HTTP协议/"/>
+
+
+
+  <link rel="stylesheet" type="text/css" href="/teresa/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/teresa/lib/nprogress/nprogress.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="/teresa/css/style.css?v=2.9.0" />
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9b4723f0455add81c1300727d6fe2f0f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "q8I1nPpo7445tVF84mvOlAyj-gzGzoHsz",
+      appKey: "i9j12HoNltgi5uq4DLvonO0h"
+    });
+  </script>
+
+
+
+
+<script>
+  window.config = {"title":"Teresa","subtitle":null,"description":"about fe","author":"Teresa-哼哼","language":"zh-CN","timezone":null,"url":"https://littlefaye.gitee.io/teresa","root":"/teresa/","permalink":":year/:month/:day/:title/","permalink_defaults":null,"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":true,"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":null,"first_line_number":"always1"},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","per_page":10,"pagination_dir":"page","theme":"even","deploy":{"type":"git","repo":"https://gitee.com/littleFaye/Teresa.git"},"ignore":[],"keywords":null,"index_generator":{"per_page":10,"order_by":"-date","path":""},"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"category_generator":{"per_page":10},"tag_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"sanitize":false,"tables":true,"breaks":true,"smartLists":true,"smartypants":true,"modifyAnchors":"","autolink":true},"server":{"port":4000,"log":false,"ip":"0.0.0.0","compress":false,"header":true},"since":2015,"favicon":"/favicon.ico","rss":false,"menu":{"Home":"/","Archives":"/archives/","Tags":"/tags","Categories":"/categories","About":"/about"},"color":"Default","toc":true,"fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"1748711164@qq.com","stack-overflow":null,"twitter":null,"facebook":null,"linkedin":null,"google":null,"github":"https://github.com/Faye0807","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":"q8I1nPpo7445tVF84mvOlAyj-gzGzoHsz","app_key":"i9j12HoNltgi5uq4DLvonO0h"},"baidu_analytics":"9b4723f0455add81c1300727d6fe2f0f","baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
+</script>
+
+    <title> HTTP协议 - Teresa </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/teresa/." class="logo">Teresa</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/teresa/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/teresa/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/teresa/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/teresa/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/teresa/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/teresa/." class="logo">Teresa</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          HTTP协议
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-09-11
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/teresa/categories/HTTP/">HTTP</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/teresa/2018/09/11/HTTP协议/"
+             data-title="HTTP协议">
+            阅读次数 0
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#web及网络基础"><span class="toc-text">web及网络基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#网路基础-TCP-IP"><span class="toc-text">网路基础 TCP/IP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-IP-协议族"><span class="toc-text">TCP/IP 协议族</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-IP-的分层管理"><span class="toc-text">TCP/IP 的分层管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-IP-通信传输流"><span class="toc-text">TCP/IP 通信传输流</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-、IP、DNS"><span class="toc-text">TCP 、IP、DNS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#负责传输的-IP-协议"><span class="toc-text">负责传输的 IP 协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#确保可靠性的-TCP协议"><span class="toc-text">确保可靠性的 TCP协议</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#负责域名解析的-DNS-服务"><span class="toc-text">负责域名解析的 DNS 服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#各种协议已HTTP协议的关系"><span class="toc-text">各种协议已HTTP协议的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URI-和-URL"><span class="toc-text">URI 和 URL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单的HTTP协议"><span class="toc-text">简单的HTTP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#请求和响应"><span class="toc-text">请求和响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP是不保存状态的协议"><span class="toc-text">HTTP是不保存状态的协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#告知服务器意图的-HTTP-方法"><span class="toc-text">告知服务器意图的 HTTP 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#持久链接节省通信量"><span class="toc-text">持久链接节省通信量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用cookie的状态管理"><span class="toc-text">使用cookie的状态管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP报文内的HTTP信息"><span class="toc-text">HTTP报文内的HTTP信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP报文"><span class="toc-text">HTTP报文</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#返回结果的-HTTP-状态码"><span class="toc-text">返回结果的 HTTP 状态码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#状态码类别"><span class="toc-text">状态码类别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2xx-成功"><span class="toc-text">2xx 成功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3xx-重定向"><span class="toc-text">3xx 重定向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4xx-客户端错误"><span class="toc-text">4xx 客户端错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5xx-服务器错误"><span class="toc-text">5xx 服务器错误</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#与-HTTP-协作的web服务器"><span class="toc-text">与 HTTP 协作的web服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用单台虚拟主机实现多个域名"><span class="toc-text">用单台虚拟主机实现多个域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通信数据转发程序：代理、网关、隧道"><span class="toc-text">通信数据转发程序：代理、网关、隧道</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#代理"><span class="toc-text">代理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网关"><span class="toc-text">网关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#隧道"><span class="toc-text">隧道</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP首部"><span class="toc-text">HTTP首部</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP首部字段"><span class="toc-text">HTTP首部字段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#确保web安全的HTTPS"><span class="toc-text">确保web安全的HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP的缺点"><span class="toc-text">HTTP的缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-加密-认证-完整性保护-HTTPS"><span class="toc-text">HTTP + 加密 + 认证 + 完整性保护 = HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#公开密钥加密技术"><span class="toc-text">公开密钥加密技术</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h2 id="web及网络基础"><a href="#web及网络基础" class="headerlink" title="web及网络基础"></a>web及网络基础</h2><h3 id="网路基础-TCP-IP"><a href="#网路基础-TCP-IP" class="headerlink" title="网路基础 TCP/IP"></a>网路基础 <code>TCP/IP</code></h3><blockquote>
+<p>通常使用的网络是在 <code>TCP/IP</code> 协议族的基础上运作的。而 <code>HTTP</code> 属于他内部的一个子集</p>
+</blockquote>
+<h4 id="TCP-IP-协议族"><a href="#TCP-IP-协议族" class="headerlink" title="TCP/IP 协议族"></a><code>TCP/IP</code> 协议族</h4><blockquote>
+<p><code>TCP/IP</code> 是互联网相关的各类协议族的总称</p>
+</blockquote>
+<h4 id="TCP-IP-的分层管理"><a href="#TCP-IP-的分层管理" class="headerlink" title="TCP/IP 的分层管理"></a><code>TCP/IP</code> 的分层管理</h4><p><code>TCP/IP</code> 协议族按层次分以下4层：</p>
+<ul>
+<li>应用层<ul>
+<li>应用层·应用层决定论向用户提供应用服务时通信的活动。</li>
+<li>HTTP协议也处于该层</li>
+</ul>
+</li>
+<li>传输层<ul>
+<li>提供处于网络连接中的两台计算机之间的数据传输</li>
+<li>传输层有两个性质不同的协议 <code>TCP</code> 和 <code>UDP</code>（用户数据报协议）</li>
+</ul>
+</li>
+<li>网络层<ul>
+<li>用来处理在网络上流动的数据包。（数据包是网络传输的最小数据单位）</li>
+<li>该层规定了通过怎样的路径（所谓的传输路线）到达对方计算机，并把数据包传送给对方</li>
+</ul>
+</li>
+<li>数据链路层<ul>
+<li>用来处理网络链接的硬件部分（物理可见部分）</li>
+<li>硬件上的范畴均在链路层的作用范围之内</li>
+</ul>
+</li>
+</ul>
+<h4 id="TCP-IP-通信传输流"><a href="#TCP-IP-通信传输流" class="headerlink" title="TCP/IP 通信传输流"></a><code>TCP/IP</code> 通信传输流</h4><p>利用 <code>TCP/IP</code> 协议族进行网络通信时，会通过分层顺序与对方进行通信。发送端从应用层往下走，接收端从链路层网上走。</p>
+<p>发送端在层与层之间传输数据时，没经过一层时必定会被打上一个该层所属的首部信息</p>
+<p>反之，接收端在层与层传输数据时，每经过一层会把对应的首部消去</p>
+<h3 id="TCP-、IP、DNS"><a href="#TCP-、IP、DNS" class="headerlink" title="TCP 、IP、DNS"></a><code>TCP</code> 、<code>IP</code>、<code>DNS</code></h3><h4 id="负责传输的-IP-协议"><a href="#负责传输的-IP-协议" class="headerlink" title="负责传输的 IP 协议"></a>负责传输的 <code>IP</code> 协议</h4><ul>
+<li>IP网络协议位于网络层。作用是把各种数据包传递给对方(IP 与 IP地址 不是一回事)</li>
+<li>若要保证确实传递给地方需要满足各类条件，其中两个重要的条件是 <code>IP地址</code> 和 <code>MAC地址</code><ul>
+<li>IP地址 指明了节点被分配到的地址；IP地址 可变换；IP间的通信依赖MAC地址</li>
+<li>MAC地址 是指网卡所属的固定地址；MAC地址 基本不会变换</li>
+<li>ARP协议（address resolution protocol）是一种用以解析地址的协议，根据通信方的IP地址 就可以反查出对应 MAC地址；ARP协议凭借MAC地址进行通信</li>
+</ul>
+</li>
+</ul>
+<h4 id="确保可靠性的-TCP协议"><a href="#确保可靠性的-TCP协议" class="headerlink" title="确保可靠性的 TCP协议"></a>确保可靠性的 <code>TCP协议</code></h4><ul>
+<li>按层次分，TCP位于传输层，提供可靠的字节流服务<ul>
+<li>字节流服务：为了方便传输，将大块数据分割成以报文段为单位的数据包进行管理</li>
+<li>可靠的传输服务：能够把数据准确可靠的传给对方</li>
+</ul>
+</li>
+<li>为了准确无误将数据送至目标，TCP协议 采用了<code>三次握手策略</code></li>
+<li>握手过程使用了 TCP的标志 SYN（synchronize同步） 和 ACK（acknowledgement确认）<ul>
+<li>发送端先发送一个带有 SYN 标志的数据包给接收端</li>
+<li>接收端收到后，回传一个带有 SYN/ACK 标志灯数据包以示传达确认信息</li>
+<li>发送端再回传一个带有 ACK 标志的数据包代表握手结束</li>
+</ul>
+</li>
+</ul>
+<h3 id="负责域名解析的-DNS-服务"><a href="#负责域名解析的-DNS-服务" class="headerlink" title="负责域名解析的 DNS 服务"></a>负责域名解析的 DNS 服务</h3><ul>
+<li>DNS（domain name system）服务适合HTTP协议一样位于应用层的协议；他提供域名到IP地址之间的解析服务</li>
+</ul>
+<h3 id="各种协议已HTTP协议的关系"><a href="#各种协议已HTTP协议的关系" class="headerlink" title="各种协议已HTTP协议的关系"></a>各种协议已HTTP协议的关系</h3><p><img src="/teresa/images/HTTP.jpg" alt="http"></p>
+<h3 id="URI-和-URL"><a href="#URI-和-URL" class="headerlink" title="URI 和 URL"></a>URI 和 URL</h3><ul>
+<li>URI 统一资源标识符；用字符串标识某一互联网资源</li>
+<li>URL 表示资源的地点；是URI的子集</li>
+</ul>
+<h2 id="简单的HTTP协议"><a href="#简单的HTTP协议" class="headerlink" title="简单的HTTP协议"></a>简单的HTTP协议</h2><h3 id="请求和响应"><a href="#请求和响应" class="headerlink" title="请求和响应"></a>请求和响应</h3><ul>
+<li><p>请求报文（报文首部+报文主体）</p>
+<ul>
+<li>请求方法</li>
+<li>请求URI</li>
+<li>协议版本</li>
+<li>可选的请求首部字段（请求首部字段、通用首部字段、实体首部字段）</li>
+<li>内容实体</li>
+</ul>
+</li>
+<li><p>响应报文</p>
+<ul>
+<li>协议版本</li>
+<li>状态码</li>
+<li>解释状态码的短语</li>
+<li>可选的响应首部字段</li>
+<li>实体主体</li>
+</ul>
+</li>
+</ul>
+<h3 id="HTTP是不保存状态的协议"><a href="#HTTP是不保存状态的协议" class="headerlink" title="HTTP是不保存状态的协议"></a>HTTP是不保存状态的协议</h3><blockquote>
+<p>HTTP协议是一种不保存状态，即无状态协议。HTTP协议自身不对请求和响应之间的通信状态进行保存。也就是说，在HTTP这个级别，协议对已发送过的请求或响应都不做持久化处理。</p>
+<p>也是说，无法根据之前的状态进行本次的请求处理</p>
+</blockquote>
+<h3 id="告知服务器意图的-HTTP-方法"><a href="#告知服务器意图的-HTTP-方法" class="headerlink" title="告知服务器意图的 HTTP 方法"></a>告知服务器意图的 HTTP 方法</h3><ul>
+<li>GET 获取资源</li>
+<li>POST 传输实体主体</li>
+<li>PUT 传输文件</li>
+<li>HEAD 获得报文首部</li>
+<li>DELETE 删除文件（和 PUT 一样不带验证机制，所以一般的web网站不使用 delete 方法）</li>
+<li>OPTIONS 徐文支持的方法（查询URI指定资源支持的方法）</li>
+<li>CONNECT 要求用隧道协议链接代理</li>
+<li>TRACE 追踪路径</li>
+</ul>
+<h3 id="持久链接节省通信量"><a href="#持久链接节省通信量" class="headerlink" title="持久链接节省通信量"></a>持久链接节省通信量</h3><blockquote>
+<p>HTTP 协议的初始版本汇总，美景醒一次HTTP通信就要断开一次 TCP 链接。对于早时候的小容量文本传输这没有多大问题，但现在比如包含大量图片的网站，每次请求都会造成无味的TCP链接建立和断开，增加通信量的开销。</p>
+</blockquote>
+<p>为解决上述问题，HTTP/1.1 和 部分 HTTP/1.0 提出持久链接的 方法。</p>
+<p>持久连接的特点是，只要任意一端没有明确提出断开连接，则保持 TCP 链接状态。旨在建立 1 次TCP链接后进行多次请求和响应的交互；</p>
+<p>在 HTTP/1.1 中，所有的链接默认都是持久链接</p>
+<blockquote>
+<p>管线化：持久连接使得多数请求以管线化方式发送成为可能。管线化技术出现，不用等待响应亦可直接发送下一个请求，实现并行发送多个请求</p>
+</blockquote>
+<h3 id="使用cookie的状态管理"><a href="#使用cookie的状态管理" class="headerlink" title="使用cookie的状态管理"></a>使用cookie的状态管理</h3><h2 id="HTTP报文内的HTTP信息"><a href="#HTTP报文内的HTTP信息" class="headerlink" title="HTTP报文内的HTTP信息"></a>HTTP报文内的HTTP信息</h2><h3 id="HTTP报文"><a href="#HTTP报文" class="headerlink" title="HTTP报文"></a>HTTP报文</h3><blockquote>
+<p>用于HTTP协议交互的信息为 HTTP 报文；HTTP报文是有多行数据构成的字符串文本</p>
+</blockquote>
+<h2 id="返回结果的-HTTP-状态码"><a href="#返回结果的-HTTP-状态码" class="headerlink" title="返回结果的 HTTP 状态码"></a>返回结果的 HTTP 状态码</h2><h3 id="状态码类别"><a href="#状态码类别" class="headerlink" title="状态码类别"></a>状态码类别</h3><ul>
+<li>1xx （信息型状态码） 接受的请求正在处理</li>
+<li>2xx （成功状态码）请求正常处理完毕</li>
+<li>3xx （重定向状态码）需要进行附加操作以完成请求</li>
+<li>4xx （客户端状态码）服务器无法处理请求</li>
+<li>5xx （服务器错误状态码）服务器处理请求出错</li>
+</ul>
+<h3 id="2xx-成功"><a href="#2xx-成功" class="headerlink" title="2xx 成功"></a>2xx 成功</h3><ul>
+<li>200 OK 请求成功</li>
+<li>204 No Content 请求成功没有资源可返回</li>
+<li>206 Partial Content</li>
+</ul>
+<h3 id="3xx-重定向"><a href="#3xx-重定向" class="headerlink" title="3xx 重定向"></a>3xx 重定向</h3><ul>
+<li>301 Moved Permanently 永久性重定向</li>
+<li>302 Found 临时性重定向</li>
+<li>303 See Other 表示请求的对应资源存在着另一个URL，应使用get方法定向获取资源</li>
+<li>304 Not Modified 表示客户端发送附带条件的请求时，请求成功，但是不存在满足条件的资源时（改状态码和重定向没有关系）</li>
+<li>307 Temporary Redirect 临时重定向，与302相同，但该状态严格按照标准不准post请求变成get</li>
+</ul>
+<h3 id="4xx-客户端错误"><a href="#4xx-客户端错误" class="headerlink" title="4xx 客户端错误"></a>4xx 客户端错误</h3><ul>
+<li>400 Bad Request 表示请求报文中存在语法错误</li>
+<li>401 Unauthorized 表示发送的请求需要通过HTTP认证</li>
+<li>403 Forbidden 表示对请求资源的访问被服务器拒绝了</li>
+<li>404 Not Found 表明服务器无法找到请求资源</li>
+</ul>
+<h3 id="5xx-服务器错误"><a href="#5xx-服务器错误" class="headerlink" title="5xx 服务器错误"></a>5xx 服务器错误</h3><ul>
+<li>500 服务器端在执行请求时发送了错误</li>
+<li>503 Server Unavailable 服务器处在超负荷或正在进行停机维护，无法处理请求</li>
+</ul>
+<h2 id="与-HTTP-协作的web服务器"><a href="#与-HTTP-协作的web服务器" class="headerlink" title="与 HTTP 协作的web服务器"></a>与 HTTP 协作的web服务器</h2><h3 id="用单台虚拟主机实现多个域名"><a href="#用单台虚拟主机实现多个域名" class="headerlink" title="用单台虚拟主机实现多个域名"></a>用单台虚拟主机实现多个域名</h3><p>即使物理层面只有一台服务器，但只要使用虚拟主机的功能。则可以奖项已具有多台服务器</p>
+<h3 id="通信数据转发程序：代理、网关、隧道"><a href="#通信数据转发程序：代理、网关、隧道" class="headerlink" title="通信数据转发程序：代理、网关、隧道"></a>通信数据转发程序：代理、网关、隧道</h3><p>这些应用程序和服务器可以将请求转发给通信线路上的下一站服务器，并且能接受从那台服务器发送的响应再转给客户端</p>
+<h4 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h4><p>代理服务器的基本行为就是接收客户端发送的请求后转发给其它服务器。代理不改变URI，会直接发送给出游资源的目标服务器。</p>
+<p>在HTTP通信过程中。可级联多台代理服务器。转发时，需要附加Via首部字段以标记出经过的主机信息</p>
+<h4 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h4><p>利用网关，可以有HTTP请求转化为其它协议通信</p>
+<h4 id="隧道"><a href="#隧道" class="headerlink" title="隧道"></a>隧道</h4><p>隧道可按要求建立起一条与其它服务器的通信线路，解释使用SSL等加密手段进行通信。隧道的目的是确保客户端能与服务器进行安全的通信。</p>
+<h2 id="HTTP首部"><a href="#HTTP首部" class="headerlink" title="HTTP首部"></a>HTTP首部</h2><h3 id="HTTP首部字段"><a href="#HTTP首部字段" class="headerlink" title="HTTP首部字段"></a>HTTP首部字段</h3><blockquote>
+<p>使用首部字段是为了给浏览器和服务器提供报文主体大小，所使用语言、认证信息等内容。</p>
+</blockquote>
+<h2 id="确保web安全的HTTPS"><a href="#确保web安全的HTTPS" class="headerlink" title="确保web安全的HTTPS"></a>确保web安全的HTTPS</h2><h3 id="HTTP的缺点"><a href="#HTTP的缺点" class="headerlink" title="HTTP的缺点"></a>HTTP的缺点</h3><ul>
+<li>通信使用明文（不加密），内容可能被窃听</li>
+<li>不验证通信方的身份，有可能遭遇伪装</li>
+<li>无法验证报文的完整性，所以有可能已遭篡改<h3 id="HTTP-加密-认证-完整性保护-HTTPS"><a href="#HTTP-加密-认证-完整性保护-HTTPS" class="headerlink" title="HTTP + 加密 + 认证 + 完整性保护 = HTTPS"></a>HTTP + 加密 + 认证 + 完整性保护 = HTTPS</h3><h4 id="公开密钥加密技术"><a href="#公开密钥加密技术" class="headerlink" title="公开密钥加密技术"></a>公开密钥加密技术</h4></li>
+<li><p>共享密钥加密</p>
+<ul>
+<li>加密和解密通用一个密钥的方式成为共享密钥加密（对称秘钥加密）</li>
+<li>以共享密钥的方式加密时必须将密钥也发给对方，期间也存在监听问题</li>
+</ul>
+</li>
+<li><p>使用两把密钥的公开密钥加密</p>
+<ul>
+<li>公开密钥加密使用一堆非对称的密钥；一个私有密钥，另一个叫公开密钥</li>
+<li>公开密钥加密与共享密钥加密相比，其处理速度要慢些</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://littlefaye.gitee.io/teresa">Teresa-哼哼</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://littlefaye.gitee.io/teresa/2018/09/11/HTTP协议/">https://littlefaye.gitee.io/teresa/2018/09/11/HTTP协议/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/teresa/tags/HTTP/">HTTP</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/teresa/2018/09/09/最佳实践/">
+        <span class="next-text nav-default">最佳实践</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:1748711164@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/Faye0807" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Teresa-哼哼</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/teresa/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/teresa/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/teresa/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/teresa/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/teresa/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/teresa/js/src/even.js?v=2.9.0"></script>
+
+  </body>
+</html>

@@ -625,6 +625,8 @@ h6 {
       font-family: Microsoft Yahei; }
     .post .post-content h1:hover .headerlink, .post .post-content h2:hover .headerlink, .post .post-content h3:hover .headerlink, .post .post-content h4:hover .headerlink, .post .post-content h5:hover .headerlink, .post .post-content h6:hover .headerlink {
       width: 15px; }
+    .post .post-content h1 .headerlink, .post .post-content h2 .headerlink, .post .post-content h3 .headerlink, .post .post-content h4 .headerlink, .post .post-content h5 .headerlink, .post .post-content h6 .headerlink {
+      width: 15px; }
     .post .post-content .headerlink {
       position: absolute;
       left: -15px;
