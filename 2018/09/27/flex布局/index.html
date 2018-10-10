@@ -17,10 +17,12 @@
 
 
 
-  <meta name="description" content="about fe"/>
+  <meta name="description" content="简记flex布局"/>
 
 
 
+
+  <meta name="keywords" content="flex" />
 
 
 
@@ -40,7 +42,7 @@
 
 
 
-<link rel="canonical" href="https://littlefaye.gitee.io/teresa/archives/2018/09/"/>
+<link rel="canonical" href="https://littlefaye.gitee.io/teresa/2018/09/27/flex布局/"/>
 
 
 
@@ -105,11 +107,7 @@
   window.config = {"title":"Teresa","subtitle":null,"description":"about fe","author":"Teresa-哼哼","language":"zh-CN","timezone":null,"url":"https://littlefaye.gitee.io/teresa","root":"/teresa/","permalink":":year/:month/:day/:title/","permalink_defaults":null,"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":true,"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":null,"first_line_number":"always1"},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","per_page":10,"pagination_dir":"page","theme":"even","deploy":{"type":"git","repo":"https://gitee.com/littleFaye/Teresa.git"},"ignore":[],"keywords":null,"index_generator":{"per_page":10,"order_by":"-date","path":""},"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"tag_generator":{"per_page":10},"category_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"sanitize":false,"tables":true,"breaks":true,"smartLists":true,"smartypants":true,"modifyAnchors":"","autolink":true},"server":{"port":4000,"log":false,"ip":"0.0.0.0","compress":false,"header":true},"since":2015,"favicon":"/favicon.ico","rss":false,"menu":{"Home":"/","Archives":"/archives/","Tags":"/tags","Categories":"/categories","About":"/about"},"color":"Default","toc":true,"fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"1748711164@qq.com","stack-overflow":null,"twitter":null,"facebook":null,"linkedin":null,"google":null,"github":"https://github.com/Faye0807","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":"q8I1nPpo7445tVF84mvOlAyj-gzGzoHsz","app_key":"i9j12HoNltgi5uq4DLvonO0h"},"baidu_analytics":"9b4723f0455add81c1300727d6fe2f0f","baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
 </script>
 
-    <title>
-  
-    归档 - Teresa
-  
-</title>
+    <title> flex布局 - Teresa </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -239,135 +237,207 @@
           <div id="content" class="content">
             
   
-  <section id="archive" class="archive">
-    
-      
-        <div class="archive-title">
-          <span class="archive-post-counter">
-            目前共计 15 篇日志
-          </span>
-        </div>
-      
-    
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          flex布局
+        
+      </h1>
 
-    
-      
+      <div class="post-meta">
+        <span class="post-time">
+          2018-09-27
+        </span>
         
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year">2018</h2>
+          <div class="post-category">
+            
+              <a href="/teresa/categories/CSS/">CSS</a>
+            
           </div>
         
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            09-29
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/teresa/2018/09/29/XHR实现ajax与jsonp/" class="archive-post-link">
-            XHR实现ajax与jsonp
-          </a>
-        </span>
+        
+        <div class="post-visits"
+             data-url="/teresa/2018/09/27/flex布局/"
+             data-title="flex布局">
+            阅读次数 0
+          </div>
+        
       </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#布局方案"><span class="toc-text">布局方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#容器属性"><span class="toc-text">容器属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目的属性"><span class="toc-text">项目的属性</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>参考链接</p>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?^%$" target="_blank" rel="noopener">flex布局教程</a></li>
+<li><a href="http://zhoon.github.io/css3/2014/08/23/flex.html" target="_blank" rel="noopener">深入理解css3中的flex-grow、flex-shrink、flex-basis</a></li>
+</ul>
+</blockquote>
+<h2 id="布局方案"><a href="#布局方案" class="headerlink" title="布局方案"></a>布局方案</h2><p>传统的布局解决方案： 基于基本的盒子模型，依赖 <code>display</code> 属性 + <code>position</code> 属性 + <code>float</code> 属性；<br>现在还有了 <code>flex</code> 布局（弹性布局）；</p>
+<p>任何一个元素都可以指为 flex 布局</p>
+<p>兼容性：</p>
+<ul>
+<li>Chrome 21+ </li>
+<li>Opera 12.1+</li>
+<li>Firefox 22+</li>
+<li>Safari 6.1+（-webkit-）</li>
+<li>IE 10+</li>
+</ul>
+<h2 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h2><ul>
+<li>flex-direction（决定主轴的方向，即项目的排列方向）<ul>
+<li>row（默认，水平+自左向右）</li>
+<li>row-reverse（水平+自右向左）</li>
+<li>column（垂直+自上而下）</li>
+<li>column-reverse（垂直+自下而上）</li>
+</ul>
+</li>
+<li>flex-wrap（决定如果一条轴线排不下，怎么换行，只决定行的排列，与每条主线上项目的排列无关）<ul>
+<li>nowrap 默认，不换行</li>
+<li>wrap 正常排序换行 多出的一行在下面</li>
+<li>wrap-reverse 反序 多出的一行在上面（会影响交叉轴的方向）</li>
+</ul>
+</li>
+<li>flex-flow（direction和wrap的简写）<ul>
+<li>direction || wrap(无所谓两个属性的顺序 及 是否必填)</li>
+</ul>
+</li>
+<li>justify-content（决定项目在主轴上的对齐方式）<ul>
+<li>flex-start 默认 左对齐</li>
+<li>flex-end 默认 右对齐</li>
+<li>center 居中</li>
+<li>space-between 两端对齐，项目之间的间隔相等</li>
+<li>space-around 效果类似，每个项目的左右margin相等 所以项目间的间隔要比项目与父元素边框的距离大一倍</li>
+</ul>
+</li>
+<li>align-items(觉得项目在交叉轴上如何对齐；比如水平排列时项目在垂直方向上的排序)<ul>
+<li>flex-start 交叉轴的起点对齐</li>
+<li>flex-end 交叉轴的终点对齐</li>
+<li>center 交叉轴中点对齐</li>
+<li>baseline 项目第一行文字的底部基线对齐</li>
+<li>stretch 默认 如果项目没有设置高度或者为auto，将占满整个容器的高度</li>
+</ul>
+</li>
+<li>align-content（决定多条轴线（主轴）的对齐方式；如果只有一条轴线，该属性不起作用）<ul>
+<li>flex-start 交叉轴的起点对齐</li>
+<li>flex-end 交叉轴的终点对齐</li>
+<li>center 交叉轴中点对齐</li>
+<li>space-between 交叉轴两端对齐，轴线间的距离均分</li>
+<li>space-around 效果类似每个轴线的上线margin相等，所以轴线与父元素边框的距离会比轴线间的距离小一半</li>
+<li>stretch 默认 如果项目没有设置高度或者为auto，将占满整个容器的高度</li>
+</ul>
+</li>
+</ul>
+<h2 id="项目的属性"><a href="#项目的属性" class="headerlink" title="项目的属性"></a>项目的属性</h2><ul>
+<li>order<ul>
+<li>决定项目的排列顺序，数值越小排列越靠前，默认为0 可以负值</li>
+</ul>
+</li>
+<li>flex-grow<ul>
+<li>定义项目瓜分容器剩余空间的比例 默认为0即不瓜分剩余空间</li>
+</ul>
+</li>
+<li>flex-shrink<ul>
+<li>定义了项目的缩小比例（即空间不足的时候）默认为1（0表示不缩小） 负值无效</li>
+</ul>
+</li>
+<li>flex-basis<ul>
+<li>定义在分配多余空间前，项目占据的主轴空间，默认为auto即项目的本来大小（其实跟width、height效果差不多）</li>
+</ul>
+</li>
+<li>flex <ul>
+<li>flex-grow、flex-shrink、flex-basic的简写 默认 0 1 auto</li>
+<li>auto（1 1 auto）</li>
+<li>none（0 0 auto）</li>
+</ul>
+</li>
+<li>align-self<ul>
+<li>定义单个项目的对齐方式，覆盖align-items 属性</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
     
       
-        
-        
-
-        
       
 
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            09-27
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/teresa/2018/09/27/flex布局/" class="archive-post-link">
-            flex布局
-          </a>
-        </span>
-      </div>
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://littlefaye.gitee.io/teresa">Teresa-哼哼</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://littlefaye.gitee.io/teresa/2018/09/27/flex布局/">https://littlefaye.gitee.io/teresa/2018/09/27/flex布局/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
     
-      
-        
-        
 
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            09-11
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/teresa/2018/09/11/HTTP协议/" class="archive-post-link">
-            HTTP协议
-          </a>
-        </span>
-      </div>
     
-      
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/teresa/tags/CSS/">CSS</a>
+            
+          </div>
         
         
-
         
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            09-09
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/teresa/2018/09/09/最佳实践/" class="archive-post-link">
-            最佳实践
-          </a>
-        </span>
-      </div>
+  <nav class="post-nav">
     
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            09-04
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/teresa/2018/09/04/DOM方法/" class="archive-post-link">
-            常用DOM操作方法及属性
-          </a>
-        </span>
-      </div>
+      <a class="prev" href="/teresa/2018/09/29/XHR实现ajax与jsonp/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">XHR实现ajax与jsonp</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
     
-  </section>
-
-  
-  <nav class="pagination">
     
+      <a class="next" href="/teresa/2018/09/11/HTTP协议/">
+        <span class="next-text nav-default">HTTP协议</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 
+      </footer>
+    
+
+  </article>
 
 
           </div>
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
       </main>
@@ -448,6 +518,11 @@
     </div>
 
     
+  
+  
+
+  
+
 
 
     

@@ -17,10 +17,12 @@
 
 
 
-  <meta name="description" content="about fe"/>
+  <meta name="description" content="简记flex布局"/>
 
 
 
+
+  <meta name="keywords" content="XHR AJAX JSONP" />
 
 
 
@@ -40,7 +42,7 @@
 
 
 
-<link rel="canonical" href="https://littlefaye.gitee.io/teresa/page/2/"/>
+<link rel="canonical" href="https://littlefaye.gitee.io/teresa/2018/09/29/XHR实现ajax与jsonp/"/>
 
 
 
@@ -105,7 +107,7 @@
   window.config = {"title":"Teresa","subtitle":null,"description":"about fe","author":"Teresa-哼哼","language":"zh-CN","timezone":null,"url":"https://littlefaye.gitee.io/teresa","root":"/teresa/","permalink":":year/:month/:day/:title/","permalink_defaults":null,"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":true,"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":null,"first_line_number":"always1"},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","per_page":10,"pagination_dir":"page","theme":"even","deploy":{"type":"git","repo":"https://gitee.com/littleFaye/Teresa.git"},"ignore":[],"keywords":null,"index_generator":{"per_page":10,"order_by":"-date","path":""},"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"tag_generator":{"per_page":10},"category_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"sanitize":false,"tables":true,"breaks":true,"smartLists":true,"smartypants":true,"modifyAnchors":"","autolink":true},"server":{"port":4000,"log":false,"ip":"0.0.0.0","compress":false,"header":true},"since":2015,"favicon":"/favicon.ico","rss":false,"menu":{"Home":"/","Archives":"/archives/","Tags":"/tags","Categories":"/categories","About":"/about"},"color":"Default","toc":true,"fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"1748711164@qq.com","stack-overflow":null,"twitter":null,"facebook":null,"linkedin":null,"google":null,"github":"https://github.com/Faye0807","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":"q8I1nPpo7445tVF84mvOlAyj-gzGzoHsz","app_key":"i9j12HoNltgi5uq4DLvonO0h"},"baidu_analytics":"9b4723f0455add81c1300727d6fe2f0f","baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
 </script>
 
-    <title> Teresa </title>
+    <title> XHR实现ajax与jsonp - Teresa </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -234,303 +236,164 @@
         <div class="content-wrapper">
           <div id="content" class="content">
             
-  <section id="posts" class="posts">
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/teresa/2018/08/20/css居中/">css居中</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-08-20
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/teresa/categories/CSS/">CSS</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/teresa/2018/08/20/css居中/"
-             data-title="css居中">
-            阅读次数 0
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>使用css居中的几种方法</p>
-          <div class="read-more">
-            <a href="/teresa/2018/08/20/css居中/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/teresa/2018/08/15/about-vue/">Vue相关问题记录</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-08-15
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/teresa/categories/Vue/">Vue</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/teresa/2018/08/15/about-vue/"
-             data-title="Vue相关问题记录">
-            阅读次数 0
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>记录工作中Vue项目遇到的问题及解决方案，持续更新</p>
-          <div class="read-more">
-            <a href="/teresa/2018/08/15/about-vue/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/teresa/2018/08/14/vue-cli/">vue-cli项目部署到gitee Pages</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-08-14
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/teresa/categories/Vue/">Vue</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/teresa/2018/08/14/vue-cli/"
-             data-title="vue-cli项目部署到gitee Pages">
-            阅读次数 0
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>通过 vue-cli 搭建的spa项目,可以部署到giteePages</p>
-          <div class="read-more">
-            <a href="/teresa/2018/08/14/vue-cli/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/teresa/2018/08/14/testOnepage/">testOnepage</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-08-14
-        </span>
-        
-        
-        <div class="post-visits"
-             data-url="/teresa/2018/08/14/testOnepage/"
-             data-title="testOnepage">
-            阅读次数 0
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>how to make a blog</p>
-          <div class="read-more">
-            <a href="/teresa/2018/08/14/testOnepage/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/teresa/2018/08/14/hello-world/">建立博客的过程</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-08-14
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/teresa/categories/博客相关/">博客相关</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/teresa/2018/08/14/hello-world/"
-             data-title="建立博客的过程">
-            阅读次数 0
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>通过hexo与码云pages建立自己的博客</p>
-          <div class="read-more">
-            <a href="/teresa/2018/08/14/hello-world/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-  </section>
-
   
-  <nav class="pagination">
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          XHR实现ajax与jsonp
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-09-29
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/teresa/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/teresa/2018/09/29/XHR实现ajax与jsonp/"
+             data-title="XHR实现ajax与jsonp">
+            阅读次数 0
+          </div>
+        
+      </div>
+    </header>
+
     
-      <a class="prev" href="/teresa/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text">上一页</span>
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#XMLHttpRequest对象"><span class="toc-text">XMLHttpRequest对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XMLHttpRequest-的用法"><span class="toc-text">XMLHttpRequest 的用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#get请求"><span class="toc-text">get请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XMLHttpRequest-2级"><span class="toc-text">XMLHttpRequest 2级</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#超时设定"><span class="toc-text">超时设定</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSONP-JSON-with-padding-填充式json"><span class="toc-text">JSONP(JSON with padding 填充式json)</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>查看本章代码 <a href="https://github.com/Faye0807/task.git" target="_blank" rel="noopener">demo</a></p>
+</blockquote>
+<h2 id="XMLHttpRequest对象"><a href="#XMLHttpRequest对象" class="headerlink" title="XMLHttpRequest对象"></a>XMLHttpRequest对象</h2><p>现在浏览器均内建 <code>XMLHttpRequest</code> 对象（IE5 和 IE6 使用 ActiveXObject）<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取 xhr 实例</span></span><br><span class="line"><span class="keyword">const</span> xhr = <span class="keyword">new</span> <span class="built_in">window</span>.XMLHttpRequest();</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="keyword">const</span> xhr1 = <span class="keyword">new</span> XMLHttpRequest();</span><br></pre></td></tr></table></figure></p>
+<h2 id="XMLHttpRequest-的用法"><a href="#XMLHttpRequest-的用法" class="headerlink" title="XMLHttpRequest 的用法"></a>XMLHttpRequest 的用法</h2><ul>
+<li>open(“method(不区分大小写)”, ‘url’, 是否异步的布尔值);</li>
+<li>send(发送请求时的参数数据若没有须填写null);(get方法时请求参数需要拼接到url后面，放到send方法里面无效)</li>
+<li><p>abort() 在取得响应前取消异步请求<br>调用 <code>send</code> 方法后，请求就会别分派到服务器，在收到响应后，响应的数据会自动填充 XHR 对象的属性，如下：</p>
+</li>
+<li><p>responseText 作为响应主体返回的文本</p>
+</li>
+<li>responseXML 如果响应的内容类型是 <code>text/xml</code> 或 <code>application/xml</code>，这个属性中将保存包含着相应数据的 XML DOM文档</li>
+<li>status 响应的 HTTP状态</li>
+<li>statusText HTTP状态的说明</li>
+</ul>
+<p>如果异步请求，需要监测请求状态（xhr对象的 <code>readyState</code> 属性），根据状态的变化（xhr的 <code>readystatechange</code> 事件）来做响应处理, <code>readystatechange</code>事件必须放在调用 <code>open</code> 方法前</p>
+<ul>
+<li><p>readyState 属性值</p>
+<ul>
+<li>0 未初始化</li>
+<li>1 启动 已经调用open方法</li>
+<li>2 发送 已经调用send方法</li>
+<li>3 接收 已经接受到部分响应数据</li>
+<li>4 完成</li>
+</ul>
+<p>自动定义头部信息方法： setRequestHeader()</p>
+<ul>
+<li>该方法必须在open之后send之前调用</li>
+<li>该方法接受两个参数： 头部字段名称，该字段名称的值</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.setRequestHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/json; charset=utf-8'</span>);</span><br></pre></td></tr></table></figure>
+<p>简单例子如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> xhr = <span class="keyword">new</span> <span class="built_in">window</span>.XMLHttpRequest();</span><br><span class="line"><span class="keyword">const</span> data = &#123;</span><br><span class="line">  id: <span class="number">10</span></span><br><span class="line">&#125;;</span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (xhr.readyState === <span class="number">4</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.status &lt; <span class="number">300</span> || xhr.status === <span class="number">304</span>)&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'request success'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'request was unseccessful'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">xhr.open(<span class="string">'GET'</span>, someurl, <span class="literal">true</span>);</span><br><span class="line">xhr.setRequestHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/json; charset=utf-8'</span>);</span><br><span class="line">xhr.send(data);</span><br></pre></td></tr></table></figure>
+<h3 id="get请求"><a href="#get请求" class="headerlink" title="get请求"></a>get请求</h3><p>get是常用的请求方式，必要时可在URL后面追加查询字符串；查询字符串中的每个参数的名称和值都必须经过 <code>encodeURIComponent()</code> 进行编码才能放到URL的末尾，且不同的键值需要用 <code>&amp;</code> 进行分割</p>
+<blockquote>
+<p>注意：get请求的参数是需要拼接到url后面的，放到send方法里面此时是无效的</p>
+</blockquote>
+<h3 id="XMLHttpRequest-2级"><a href="#XMLHttpRequest-2级" class="headerlink" title="XMLHttpRequest 2级"></a>XMLHttpRequest 2级</h3><h4 id="超时设定"><a href="#超时设定" class="headerlink" title="超时设定"></a>超时设定</h4><ul>
+<li>xhr.timeout = 1000</li>
+<li>xhr.ontimeout = function() {}</li>
+</ul>
+<h3 id="JSONP-JSON-with-padding-填充式json"><a href="#JSONP-JSON-with-padding-填充式json" class="headerlink" title="JSONP(JSON with padding 填充式json)"></a>JSONP(JSON with padding 填充式json)</h3><p>JSONP 由两部分组成（回调函数 + 数据）<br>缺点</p>
+<ul>
+<li>只能使用Get请求</li>
+<li>不能注册success、error等事件监听函数，不能很容易的确定JSONP请求是否失败</li>
+<li>JSONP是从其他域中加载代码执行，容易受到跨站请求伪造的攻击，其安全性无法确保</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://littlefaye.gitee.io/teresa">Teresa-哼哼</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://littlefaye.gitee.io/teresa/2018/09/29/XHR实现ajax与jsonp/">https://littlefaye.gitee.io/teresa/2018/09/29/XHR实现ajax与jsonp/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/teresa/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/teresa/tags/AJAX/">AJAX</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/teresa/2018/09/27/flex布局/">
+        <span class="next-text nav-default">flex布局</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
       </a>
-    
     
   </nav>
 
+      </footer>
+    
+
+  </article>
+
 
           </div>
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
       </main>
@@ -611,6 +474,11 @@
     </div>
 
     
+  
+  
+
+  
+
 
 
     
