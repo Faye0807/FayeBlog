@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="转：你不知道的JSON.stringify"/>
+
+
+
+
+  <meta name="keywords" content="JSON" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/teresa/atom.xml" title="Teresa">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/teresa/favicon.ico?v=2.9.0" />
+
+
+
+<link rel="canonical" href="https://littlefaye.gitee.io/teresa/2018/10/17/你不知道的JSON-stringify/"/>
+
+
+
+  <link rel="stylesheet" type="text/css" href="/teresa/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/teresa/lib/nprogress/nprogress.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="/teresa/css/style.css?v=2.9.0" />
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9b4723f0455add81c1300727d6fe2f0f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "q8I1nPpo7445tVF84mvOlAyj-gzGzoHsz",
+      appKey: "i9j12HoNltgi5uq4DLvonO0h"
+    });
+  </script>
+
+
+
+
+<script>
+  window.config = {"title":"Teresa","subtitle":null,"description":"about fe","author":"Teresa-哼哼","language":"zh-CN","timezone":null,"url":"https://littlefaye.gitee.io/teresa","root":"/teresa/","permalink":":year/:month/:day/:title/","permalink_defaults":null,"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":true,"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":null,"first_line_number":"always1"},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","per_page":10,"pagination_dir":"page","theme":"even","deploy":{"type":"git","repo":"https://gitee.com/littleFaye/Teresa.git"},"ignore":[],"keywords":null,"index_generator":{"per_page":10,"order_by":"-date","path":""},"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"category_generator":{"per_page":10},"tag_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"sanitize":false,"tables":true,"breaks":true,"smartLists":true,"smartypants":true,"modifyAnchors":"","autolink":true},"server":{"port":4000,"log":false,"ip":"0.0.0.0","compress":false,"header":true},"since":2015,"favicon":"/favicon.ico","rss":false,"menu":{"Home":"/","Archives":"/archives/","Tags":"/tags","Categories":"/categories","About":"/about"},"color":"Default","toc":true,"fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"1748711164@qq.com","stack-overflow":null,"twitter":null,"facebook":null,"linkedin":null,"google":null,"github":"https://github.com/Faye0807","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":"q8I1nPpo7445tVF84mvOlAyj-gzGzoHsz","app_key":"i9j12HoNltgi5uq4DLvonO0h"},"baidu_analytics":"9b4723f0455add81c1300727d6fe2f0f","baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
+</script>
+
+    <title> 你不知道的JSON.stringify - Teresa </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/teresa/." class="logo">Teresa</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/teresa/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/teresa/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/teresa/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/teresa/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/teresa/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/teresa/." class="logo">Teresa</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/teresa/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          你不知道的JSON.stringify
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-10-17
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/teresa/categories/JSON/">JSON</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/teresa/2018/10/17/你不知道的JSON-stringify/"
+             data-title="你不知道的JSON.stringify">
+            阅读次数 0
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JSON-stringify"><span class="toc-text">JSON.stringify</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#还有哪些属性也不能转换？"><span class="toc-text">还有哪些属性也不能转换？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#循环引用"><span class="toc-text">循环引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Symbol和undefined"><span class="toc-text">Symbol和undefined</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#重写对象toJSON函数"><span class="toc-text">重写对象toJSON函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#可选参数"><span class="toc-text">可选参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Replacer"><span class="toc-text">Replacer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#space"><span class="toc-text">space</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>本文转自 <a href="https://blog.fundebug.com/2017/08/17/what-you-didnt-know%20about-json-stringify/" target="_blank" rel="noopener">你不知道的JSON.stringify</a></p>
+</blockquote>
+<p>JSON已经逐渐替代XML被全世界的开发者广泛使用。本文深入讲解JavaScript中使用JSON.stringify的一些细节问题。首先简单回顾一下JSON和JavaScript：</p>
+<p>不是所有的合法的JSON都是有效的JavaScript；<br>JSON只是一个文本格式；<br>JSON中的数字是十进制。</p>
+<h1 id="JSON-stringify"><a href="#JSON-stringify" class="headerlink" title="JSON.stringify"></a>JSON.stringify</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> foo = &#123; <span class="attr">a</span>: <span class="number">2</span>, <span class="attr">b</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125; &#125;;</span><br><span class="line"><span class="built_in">JSON</span>.stringify(foo);</span><br><span class="line"><span class="comment">// "&#123; "a": 2 &#125;"</span></span><br></pre></td></tr></table></figure>
+<p>JSON.stringify函数将一个JavaScript对象转换成文本化的JSON。不能被文本化的属性会被忽略。foo中属性b的值是函数定义，没有被转换而丢失。</p>
+<h1 id="还有哪些属性也不能转换？"><a href="#还有哪些属性也不能转换？" class="headerlink" title="还有哪些属性也不能转换？"></a>还有哪些属性也不能转换？</h1><h2 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h2><p>如果一个对象的属性值通过某种间接的方式指回该对象本身，那么就是一个循环引用。比如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bar = &#123;</span><br><span class="line">  a: &#123;</span><br><span class="line">     c: foo</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> foo = &#123;</span><br><span class="line">  b: bar</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>属性c指向自己，如果层层解析，将会进入一个无限循环。我们尝试将其打印出来看看：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fooStringified = <span class="built_in">JSON</span>.stringify(foo);</span><br><span class="line"><span class="built_in">console</span>.log(fooStringified); <span class="comment">// &#123;"b":&#123;"a":&#123;&#125;&#125;&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>c的属性指向foo对象，foo对象中的b属性又指向bar对象而无法处理，整个被忽略而返回空对象。</p>
+<p>如下定义(原文中的例子)是无法通过编译的：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> foo = &#123;<span class="attr">b</span> : foo&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>错误信息：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ReferenceError</span>: foo is not defined</span><br><span class="line">    at repl:<span class="number">1</span>:<span class="number">14</span></span><br></pre></td></tr></table></figure></p>
+<p>在函数式语言Haskell中，因为有Lazy Evaluation技术，可以使用类似的定义方法。</p>
+<p>备注：原文中的例子不正确，感谢SegmentFault用户xueshen1106指出，现在将他的评论贴在下方，供大家学习。<br><img src="https://blog.fundebug.com/2017/08/17/what-you-didnt-know%20about-json-stringify/segmentfault-user-comment-1.png" alt="error"></p>
+<h2 id="Symbol和undefined"><a href="#Symbol和undefined" class="headerlink" title="Symbol和undefined"></a>Symbol和undefined</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> foo = &#123; <span class="attr">b</span>: <span class="literal">undefined</span> &#125;;</span><br><span class="line"><span class="built_in">JSON</span>.stringify(foo);</span><br><span class="line"><span class="comment">// &#123;&#125;</span></span><br><span class="line"><span class="comment">// Symbols</span></span><br><span class="line">foo.b = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="built_in">JSON</span>.stringify(foo);</span><br><span class="line"><span class="comment">// &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>例外情况<br>在数组中，不可被stringify的元素用null填充。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> foo = [<span class="built_in">Symbol</span>(), <span class="literal">undefined</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;, <span class="string">'works'</span>]</span><br><span class="line"><span class="built_in">JSON</span>.stringify(foo);</span><br><span class="line"><span class="comment">// "[null,null,null,'works']"</span></span><br></pre></td></tr></table></figure></p>
+<p>这样可以保持数组本身的“形状”，也就是每一个元素原本的索引。</p>
+<p>为什么有些属性无法被stringify呢？<br>因为JSON是一个通用的文本格式，和语言无关。设想如果将函数定义也stringify的话，如何判断是哪种语言，并且通过合适的方式将其呈现出来将会变得特别复杂。特别是和语言相关的一些特性，比如JavaScript中的Symbol。</p>
+<p>ECMASCript官方也特意强调了这一点：</p>
+<blockquote>
+<p>It does not attempt to impose ECMAScript’s internal data representations on other programming languages. Instead, it shares a small subset of ECMAScript’s textual representations with all other programming languages.</p>
+</blockquote>
+<h1 id="重写对象toJSON函数"><a href="#重写对象toJSON函数" class="headerlink" title="重写对象toJSON函数"></a>重写对象toJSON函数</h1><p>一个绕过对象某些属性无法 <code>stringify</code> 的方法就是实现对象的 <code>toJSON</code> 方法来自定义被 <code>stringify</code> 的对象。因为几乎每一个<code>AJAX</code>调用都会使用 <code>JSON.stringify</code>，掌握该技巧将会对处理服务器交互有很大帮助。</p>
+<p>和<code>toString</code>允许你将对象中的元素以字符串(string)的形式返回类似，<code>toJSON</code>提供了一种可以将对象中不能stringify的属性转换的方法，使得接下来调用的<code>JSON.stringify</code>可以将其转换成JSON格式。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params">first, last</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.firstName = first;</span><br><span class="line">    <span class="keyword">this</span>.last = last;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.process = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">' '</span> +</span><br><span class="line">          <span class="keyword">this</span>.lastName;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> ade = <span class="keyword">new</span> Person(<span class="string">'Ade'</span>, <span class="string">'P'</span>);</span><br><span class="line"><span class="built_in">JSON</span>.stringify(ade);</span><br><span class="line"><span class="comment">// "&#123;"firstName":"Ade","last":"P"&#125;"</span></span><br></pre></td></tr></table></figure></p>
+<p>Person实例ade的process函数没有被stringify。假想如果服务器只想要ade的全称，而不是分别获取姓和名，我们可以直接定义toJSON来达到目的：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Person.prototype.toJSON = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">fullName</span>: <span class="keyword">this</span>.process(); &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> ade = <span class="keyword">new</span> Person(<span class="string">'Ade'</span>, <span class="string">'P'</span>);</span><br><span class="line"><span class="built_in">JSON</span>.stringify(ade);</span><br><span class="line"><span class="comment">// "&#123;"fullName":"Ade P"&#125;"</span></span><br></pre></td></tr></table></figure></p>
+<p>定义toJSON的优点是复用性和稳定性，你可以将ade配合任何库使用，传输的数据都将是你通过toJSON定义而返回的fullName。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// jQuery</span></span><br><span class="line">$.post(<span class="string">'endpoint'</span>, ade);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Angular 2</span></span><br><span class="line"><span class="keyword">this</span>.httpService.post(<span class="string">'endpoint'</span>, ade)</span><br></pre></td></tr></table></figure></p>
+<h2 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h2><p>JSON.stringify完整的定义如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">JSON</span>.stringify(value, replacer?, space?)</span><br></pre></td></tr></table></figure></p>
+<p>replacer和space都是可选参数，接下来我们来分别讲解。</p>
+<h3 id="Replacer"><a href="#Replacer" class="headerlink" title="Replacer"></a>Replacer</h3><p>replacer是一个过滤函数或则一个数组包含要被stringify的属性名。如果没有定义，默认所有属性都被stringify。</p>
+<ul>
+<li>数组<br>只有在数组中的属性被stringify：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> foo = &#123;</span><br><span class="line">  a : <span class="number">1</span>,</span><br><span class="line">  b : <span class="string">"string"</span>,</span><br><span class="line">  c : <span class="literal">false</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">JSON</span>.stringify(foo, [<span class="string">'a'</span>, <span class="string">'b'</span>]);</span><br><span class="line"><span class="comment">//"&#123;"a":1,"b":"string"&#125;"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>嵌套属性也同样会被过滤：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> bar = &#123;</span><br><span class="line">  a : <span class="number">1</span>,</span><br><span class="line">  b : &#123; <span class="attr">c</span> : <span class="number">2</span> &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">JSON</span>.stringify(bar, [<span class="string">'a'</span>, <span class="string">'b'</span>]);</span><br><span class="line"><span class="comment">//"&#123;"a":1,"b":&#123;&#125;&#125;"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">JSON</span>.stringify(bar, [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]);</span><br><span class="line"><span class="comment">//"&#123;"a":1,"b":&#123;"c":2&#125;&#125;"</span></span><br></pre></td></tr></table></figure></p>
+<p>定义过滤数组有时候并不能满足需求，那么可以自定义过滤函数。</p>
+<ul>
+<li>函数<br>过滤函数以对象中的每一个属性和值作为输入，返回值有以下几种情况：</li>
+</ul>
+<p>返回undefined表示忽略该属性；<br>返回字符串，布尔值或则数字将会被stringify；<br>返回对象将会触发递归调用知道遇到基本类型的属性；<br>返回无法stringify的值将会被忽略；<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> baz = &#123;</span><br><span class="line">  a : <span class="number">1</span>,</span><br><span class="line">  b : &#123; <span class="attr">c</span> : <span class="number">2</span> &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回大于1的值</span></span><br><span class="line"><span class="keyword">let</span> replacer = <span class="function"><span class="keyword">function</span> (<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> === <span class="string">'number'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> value &gt; <span class="number">1</span> ? value: <span class="literal">undefined</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> value;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">JSON</span>.stringify(baz, replacer);</span><br><span class="line"><span class="comment">// "&#123;"b":&#123;"c":2&#125;&#125;"</span></span><br></pre></td></tr></table></figure></p>
+<p>通过改写上面的函数加入适当的输出，可以看到具体的执行步骤：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a : <span class="number">1</span>,</span><br><span class="line">  b : &#123; <span class="attr">c</span> : <span class="number">2</span> &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> tracer = <span class="function"><span class="keyword">function</span> (<span class="params">key, value</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Key: '</span>, key);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Value: '</span>, value);</span><br><span class="line">  <span class="keyword">return</span> value;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">JSON</span>.stringify(obj, tracer);</span><br><span class="line"><span class="comment">// Key:</span></span><br><span class="line"><span class="comment">// Value: Object &#123;a: 1, b: Object&#125;</span></span><br><span class="line"><span class="comment">// Key: a</span></span><br><span class="line"><span class="comment">// Value: 1</span></span><br><span class="line"><span class="comment">// Key: b</span></span><br><span class="line"><span class="comment">// Value: Object &#123;c: 2&#125;</span></span><br><span class="line"><span class="comment">// Key: c</span></span><br><span class="line"><span class="comment">// Value: 2</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="space"><a href="#space" class="headerlink" title="space"></a>space</h3><p>你是否意识到调用默认的JSON.stringify返回的值只要一行，而且完全没有空格？如果想要更加美观的打印出来，那么就需要使用space这个参数了。</p>
+<p>我告诉你一个非常简单的方法：通过tab(‘\t’)来分割即可。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> space = &#123;</span><br><span class="line">  a : <span class="number">1</span>,</span><br><span class="line">  b : &#123; <span class="attr">c</span> : <span class="number">2</span> &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用制表符</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify(space, <span class="literal">undefined</span>, <span class="string">'\t'</span>);</span><br><span class="line"><span class="comment">// "&#123;</span></span><br><span class="line"><span class="comment">//  "a": 1,</span></span><br><span class="line"><span class="comment">//  "b": &#123;</span></span><br><span class="line"><span class="comment">//   "c": 2</span></span><br><span class="line"><span class="comment">//  &#125;</span></span><br><span class="line"><span class="comment">// &#125;"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">JSON</span>.stringify(space, <span class="literal">undefined</span>, <span class="string">''</span>);</span><br><span class="line"><span class="comment">// &#123;"a":1,"b":&#123;"c":2&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义分隔符</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify(space, <span class="literal">undefined</span>, <span class="string">'a'</span>);</span><br><span class="line"><span class="comment">// "&#123;</span></span><br><span class="line"><span class="comment">//  a"a": 1,</span></span><br><span class="line"><span class="comment">//  a"b": &#123;</span></span><br><span class="line"><span class="comment">//   aa"c": 2</span></span><br><span class="line"><span class="comment">//  a&#125;</span></span><br><span class="line"><span class="comment">// &#125;"</span></span><br></pre></td></tr></table></figure></p>
+<p>一道三颗星的思考题：为什么打印结果的倒数第三行有两个a呢？</p>
+<p>结论<br>本文介绍了一些使用toJSON的技巧：</p>
+<p>无法stringify的几种类型<br>使用toJSON来自定义JSON.stringify的属性<br>可选参数replacer的两种定义方法来过滤属性<br>可选参数space用来格式化输出结果<br>数组和对象中如果包含无法stringify的元素的时候的区别</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://littlefaye.gitee.io/teresa">Teresa-哼哼</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://littlefaye.gitee.io/teresa/2018/10/17/你不知道的JSON-stringify/">https://littlefaye.gitee.io/teresa/2018/10/17/你不知道的JSON-stringify/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/teresa/tags/JSON/">JSON</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/teresa/2018/10/16/cookie与HTML5离线存储等/">
+        <span class="next-text nav-default">cookie与HTML5离线存储等</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:1748711164@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/Faye0807" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Teresa-哼哼</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/teresa/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/teresa/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/teresa/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/teresa/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/teresa/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/teresa/js/src/even.js?v=2.9.0"></script>
+
+  </body>
+</html>
