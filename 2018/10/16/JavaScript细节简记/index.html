@@ -271,7 +271,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#script-defer-async-区别"><span class="toc-text">script defer async 区别</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#script-defer-async-区别"><span class="toc-text">script defer async 区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined-与-null-的区别"><span class="toc-text">undefined 与 null 的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事件对象及this指向"><span class="toc-text">事件对象及this指向</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一些小意外"><span class="toc-text">一些小意外</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ES5-与-ES6-区别"><span class="toc-text">ES5 与 ES6 区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#原型链-amp-继承"><span class="toc-text">原型链 &amp; 继承</span></a></li></ol>
     </div>
   </div>
 
@@ -280,6 +280,68 @@
     <div class="post-content">
       
         <h1 id="script-defer-async-区别"><a href="#script-defer-async-区别" class="headerlink" title="script defer async 区别"></a><code>script defer async</code> 区别</h1><p><a href="https://segmentfault.com/q/1010000000640869" target="_blank" rel="noopener">defer和async的区别</a></p>
+<h1 id="undefined-与-null-的区别"><a href="#undefined-与-null-的区别" class="headerlink" title="undefined 与 null 的区别"></a>undefined 与 null 的区别</h1><p><a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html" target="_blank" rel="noopener">undefined与null的区别</a></p>
+<ul>
+<li><code>not defined</code> <ul>
+<li>如果我们访问一个未声明的变量 会返回 <code>not defined</code> 的错误</li>
+</ul>
+</li>
+</ul>
+<h1 id="事件对象及this指向"><a href="#事件对象及this指向" class="headerlink" title="事件对象及this指向"></a>事件对象及this指向</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">添加事件方式</th>
+<th style="text-align:center">IE事件对象</th>
+<th style="text-align:center">非IE事件对象</th>
+<th style="text-align:center">IE this</th>
+<th style="text-align:center">非IE this</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">HTML属性</td>
+<td style="text-align:center">window.event</td>
+<td style="text-align:center">window.event</td>
+<td style="text-align:center">window</td>
+<td style="text-align:center">window</td>
+</tr>
+<tr>
+<td style="text-align:center">DOM0</td>
+<td style="text-align:center">window.event</td>
+<td style="text-align:center">event参数</td>
+<td style="text-align:center">event.srcElement(相当于target)</td>
+<td style="text-align:center">currentTarget</td>
+</tr>
+<tr>
+<td style="text-align:center">DOM3</td>
+<td style="text-align:center">event参数</td>
+<td style="text-align:center">event参数</td>
+<td style="text-align:center">window</td>
+<td style="text-align:center">currentTarget</td>
+</tr>
+</tbody>
+</table>
+<h1 id="一些小意外"><a href="#一些小意外" class="headerlink" title="一些小意外"></a>一些小意外</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = &#123;<span class="attr">a</span>: <span class="number">12</span>&#125;;</span><br><span class="line"><span class="keyword">const</span> b = &#123;<span class="attr">a</span>: <span class="number">12</span>&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(a == b); <span class="comment">// false 可以理解</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(a) == <span class="built_in">JSON</span>.stringify(b)); <span class="comment">// true 也可以理解</span></span><br><span class="line"><span class="built_in">console</span>.log(a.__proto__ == b.__proto__); <span class="comment">// true ????</span></span><br><span class="line"><span class="comment">// 此时修改 a的原型会影响b的原型</span></span><br><span class="line"><span class="keyword">const</span> a.__proto__.name = <span class="string">'lee'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(b.__proto__.name); <span class="comment">// lee </span></span><br><span class="line"><span class="keyword">const</span> t = &#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(t.__proto__.name); <span class="comment">// lee</span></span><br></pre></td></tr></table></figure>
+<h1 id="ES5-与-ES6-区别"><a href="#ES5-与-ES6-区别" class="headerlink" title="ES5 与 ES6 区别"></a>ES5 与 ES6 区别</h1><ul>
+<li>箭头函数</li>
+<li>模板字符串</li>
+<li>作用域</li>
+<li>声明变量的方式<ul>
+<li>作用域的区别</li>
+<li>所声明的变量 不属于window的属性</li>
+</ul>
+</li>
+<li>函数传参可以指定默认值</li>
+<li>引入 class、</li>
+<li>rest参数 用于获取函数的多余参数</li>
+<li>spread 扩展运算符（…） 相当于 rest参数 的逆操作</li>
+<li>Promise</li>
+<li>import export</li>
+<li></li>
+</ul>
+<h1 id="原型链-amp-继承"><a href="#原型链-amp-继承" class="headerlink" title="原型链 &amp; 继承"></a>原型链 &amp; 继承</h1><p><a href="https://segmentfault.com/a/1190000016736112#articleHeader2" target="_blank" rel="noopener">从一道题解读JS原型链</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html" target="_blank" rel="noopener">Javascript面向对象编程（二）：构造函数的继承</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance_continued.html" target="_blank" rel="noopener">Javascript面向对象编程（三）：非构造函数的继承</a></p>
 
       
     </div>

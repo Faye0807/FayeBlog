@@ -17,12 +17,12 @@
 
 
 
-  <meta name="description" content="记录各类属性等细节，以备随时查询"/>
+  <meta name="description" content="记录字符串的所有方法"/>
 
 
 
 
-  <meta name="keywords" content="CSS" />
+  <meta name="keywords" content="字符串的方法" />
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="https://littlefaye.gitee.io/teresa/2018/10/15/CSS细节简记/"/>
+<link rel="canonical" href="https://littlefaye.gitee.io/teresa/2018/10/22/字符串方法/"/>
 
 
 
@@ -107,7 +107,7 @@
   window.config = {"title":"Teresa","subtitle":null,"description":"about fe","author":"Teresa-哼哼","language":"zh-CN","timezone":null,"url":"https://littlefaye.gitee.io/teresa","root":"/teresa/","permalink":":year/:month/:day/:title/","permalink_defaults":null,"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":true,"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":null,"first_line_number":"always1"},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","per_page":10,"pagination_dir":"page","theme":"even","deploy":{"type":"git","repo":"https://gitee.com/littleFaye/Teresa.git"},"ignore":[],"keywords":null,"index_generator":{"per_page":10,"order_by":"-date","path":""},"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"category_generator":{"per_page":10},"tag_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"sanitize":false,"tables":true,"breaks":true,"smartLists":true,"smartypants":true,"modifyAnchors":"","autolink":true},"server":{"port":4000,"log":false,"ip":"0.0.0.0","compress":false,"header":true},"since":2015,"favicon":"/favicon.ico","rss":false,"menu":{"Home":"/","Archives":"/archives/","Tags":"/tags","Categories":"/categories","About":"/about"},"color":"Default","toc":true,"fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"1748711164@qq.com","stack-overflow":null,"twitter":null,"facebook":null,"linkedin":null,"google":null,"github":"https://github.com/Faye0807","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":"q8I1nPpo7445tVF84mvOlAyj-gzGzoHsz","app_key":"i9j12HoNltgi5uq4DLvonO0h"},"baidu_analytics":"9b4723f0455add81c1300727d6fe2f0f","baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
 </script>
 
-    <title> CSS细节简记 - Teresa </title>
+    <title> 字符串方法 - Teresa </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -241,25 +241,25 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          CSS细节简记
+          字符串方法
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2018-10-15
+          2018-10-22
         </span>
         
           <div class="post-category">
             
-              <a href="/teresa/categories/CSS/">CSS</a>
+              <a href="/teresa/categories/JavaScript/">JavaScript</a>
             
           </div>
         
         
         <div class="post-visits"
-             data-url="/teresa/2018/10/15/CSS细节简记/"
-             data-title="CSS细节简记">
+             data-url="/teresa/2018/10/22/字符串方法/"
+             data-title="字符串方法">
             阅读次数 0
           </div>
         
@@ -271,7 +271,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#overflow"><span class="toc-text">overflow</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#position"><span class="toc-text">position</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何把元素从页面消失"><span class="toc-text">如何把元素从页面消失</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#indexOf-string"><span class="toc-text">indexOf(string)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#charAt-index"><span class="toc-text">charAt(index)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#charCodeAt-index"><span class="toc-text">charCodeAt(index)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#concat-拼接字符串"><span class="toc-text">concat() 拼接字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#slice-index-n"><span class="toc-text">slice(index, n)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#substring-index-n"><span class="toc-text">substring(index, n)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#substr-index-n"><span class="toc-text">substr(index, n)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#trim-去除首尾空格"><span class="toc-text">trim() 去除首尾空格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串大小写转换"><span class="toc-text">字符串大小写转换</span></a></li></ol>
     </div>
   </div>
 
@@ -279,21 +279,55 @@
 
     <div class="post-content">
       
-        <h1 id="overflow"><a href="#overflow" class="headerlink" title="overflow"></a>overflow</h1><p>控制的是 <code>border</code> 以内的内容；比如 <code>overflow: hidden;</code>  <code>border</code> 以外的内容才会被隐藏（即 <code>padding</code>,<code>content</code> 的部分不会被隐藏， <code>margin</code> 部分会被隐藏</p>
-<h1 id="position"><a href="#position" class="headerlink" title="position"></a>position</h1><p>当 <code>position</code> 值为 <code>absolute</code> 时，如果不设置 <code>top left</code> 等值，绝对定位的元素 在 <code>content</code> 的左上角边界排放</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"formargin"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"oh"</span>&gt;</span>一个额外的内容哦哦哦哦哦<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">  这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章这一一个很长的文章</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.formargin</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: palevioletred;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.formargin</span> <span class="selector-class">.oh</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">background</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>没有设置top等值<br><img src="/teresa/images/position0.png" alt="没有设置top等位置值"></li>
-<li>top=0;left=0;<br><img src="/teresa/images/position_topLeft.png" alt="top=0;left=0"></li>
+        <h2 id="indexOf-string"><a href="#indexOf-string" class="headerlink" title="indexOf(string)"></a>indexOf(string)</h2><ul>
+<li>返回包含 字符串 string 的索引位置（第一次匹配的位置）</li>
+<li>不包含则返回-1</li>
 </ul>
-<h1 id="如何把元素从页面消失"><a href="#如何把元素从页面消失" class="headerlink" title="如何把元素从页面消失"></a>如何把元素从页面消失</h1><ul>
-<li>removeChild 把元素从文档删除</li>
-<li>display: none</li>
-<li>将元素移动至容器以外 容器：overflow: hidden;</li>
-<li>visibility: hidden; 只是不可见，仍然占据空间</li>
-<li>width,height等设置为0</li>
-<li>transform: scale(0) 缩小到消失</li>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'this is a string'</span>.indexOf(<span class="string">'is'</span>); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<h2 id="charAt-index"><a href="#charAt-index" class="headerlink" title="charAt(index)"></a>charAt(index)</h2><ul>
+<li>返回index 处的字符</li>
+<li>index 超出字符长度范围，返回空字符串</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'this is a string'</span>.charAt(<span class="number">1</span>); <span class="comment">// "h"</span></span><br></pre></td></tr></table></figure>
+<h2 id="charCodeAt-index"><a href="#charCodeAt-index" class="headerlink" title="charCodeAt(index)"></a>charCodeAt(index)</h2><ul>
+<li>返回index 处字符的code值 字符编码</li>
+<li>index 超出字符长度范围 则返回 NaN</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'this is a string'</span>.charCodeAt(<span class="number">1</span>); <span class="comment">// 104(h的code码：字符编码)</span></span><br></pre></td></tr></table></figure>
+<h2 id="concat-拼接字符串"><a href="#concat-拼接字符串" class="headerlink" title="concat() 拼接字符串"></a>concat() 拼接字符串</h2><ul>
+<li>返回一个新字符串，不改变原字符串</li>
+<li>可以有任意多个参数</li>
+<li>数组也有一个这个方法</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'this is a string'</span>.concat(<span class="string">' ahhh'</span>, <span class="string">' jjjj'</span>); <span class="comment">// "this is a string ahhh jjjj"</span></span><br></pre></td></tr></table></figure>
+<h2 id="slice-index-n"><a href="#slice-index-n" class="headerlink" title="slice(index, n)"></a>slice(index, n)</h2><ul>
+<li>返回新字符串，不改变源字符串</li>
+<li>截取 [index, n) 范围内的字符串</li>
+<li>当参数为负值时，会与字符串长度相加</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'this is a string'</span>.slice(<span class="number">1</span>, <span class="number">3</span>); <span class="comment">// "hi"</span></span><br><span class="line"><span class="string">'this is a string'</span>.slice(<span class="number">-5</span>, <span class="number">-3</span>); <span class="comment">// "tr" length = 16</span></span><br><span class="line"><span class="string">'this is a string'</span>.slice(<span class="number">11</span>, <span class="number">13</span>); <span class="comment">// "tr"</span></span><br></pre></td></tr></table></figure>
+<h2 id="substring-index-n"><a href="#substring-index-n" class="headerlink" title="substring(index, n)"></a>substring(index, n)</h2><ul>
+<li>返回新字符串，不改变源字符串</li>
+<li>截取 [index, n) 范围内的字符串</li>
+<li>当参数为负值时，自动转换为 0 </li>
+<li>该方法，默认将 两参数中较小的值，作为开始值（即 substring(5,3) == substring(3,5)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'this is a string'</span>.substring(<span class="number">1</span>, <span class="number">3</span>); <span class="comment">// "hi"</span></span><br><span class="line"><span class="string">'this is a string'</span>.substring(<span class="number">5</span>, <span class="number">-3</span>); <span class="comment">// "this " length = 16</span></span><br><span class="line"><span class="string">'this is a string'</span>.substring(<span class="number">5</span>, <span class="number">0</span>); <span class="comment">// "this "</span></span><br><span class="line"><span class="string">'this is a string'</span>.substring(<span class="number">0</span>, <span class="number">5</span>); <span class="comment">// "this "</span></span><br></pre></td></tr></table></figure>
+<h2 id="substr-index-n"><a href="#substr-index-n" class="headerlink" title="substr(index, n)"></a>substr(index, n)</h2><ul>
+<li>返回新字符串，不改变源字符串</li>
+<li>截取 [index, n + index) 范围内的字符串(即，从 index 开始 截取 n 位 字符串)</li>
+<li>当第一个参数为负值时，会与字符串长度相加</li>
+<li>当第二个参数为负值时，自动转换为0</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'this is a string'</span>.substr(<span class="number">1</span>, <span class="number">3</span>); <span class="comment">// "his"</span></span><br><span class="line"><span class="string">'this is a string'</span>.substr(<span class="number">-5</span>, <span class="number">-3</span>); <span class="comment">// "" length = 16</span></span><br><span class="line"><span class="string">'this is a string'</span>.substr(<span class="number">11</span>, <span class="number">0</span>); <span class="comment">// "tr"</span></span><br></pre></td></tr></table></figure>
+<h2 id="trim-去除首尾空格"><a href="#trim-去除首尾空格" class="headerlink" title="trim() 去除首尾空格"></a>trim() 去除首尾空格</h2><ul>
+<li>返回新字符串 不改变源字符串</li>
+</ul>
+<h2 id="字符串大小写转换"><a href="#字符串大小写转换" class="headerlink" title="字符串大小写转换"></a>字符串大小写转换</h2><ul>
+<li>toLocalUpperCase()</li>
+<li>toUpperCase()</li>
+<li>toLowerCase()</li>
+<li>toLocalLowerCase()</li>
 </ul>
 
       
@@ -310,7 +344,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://littlefaye.gitee.io/teresa/2018/10/15/CSS细节简记/">https://littlefaye.gitee.io/teresa/2018/10/15/CSS细节简记/</a>
+      <a href="https://littlefaye.gitee.io/teresa/2018/10/22/字符串方法/">https://littlefaye.gitee.io/teresa/2018/10/22/字符串方法/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -330,7 +364,7 @@
         
           <div class="post-tags">
             
-              <a href="/teresa/tags/CSS/">CSS</a>
+              <a href="/teresa/tags/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -338,15 +372,15 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/teresa/2018/10/16/JavaScript细节简记/">
+      <a class="prev" href="/teresa/2018/10/26/HTML元素简记/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">JavaScript细节简记</span>
+        <span class="prev-text nav-default">HTML元素简记</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/teresa/2018/10/11/CSS实现宽度自适应100-，宽高16-9的比例的矩形/">
-        <span class="next-text nav-default">CSS实现宽度自适应100%，宽高16:9的比例的矩形</span>
+      <a class="next" href="/teresa/2018/10/22/数组方法/">
+        <span class="next-text nav-default">数组方法</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>

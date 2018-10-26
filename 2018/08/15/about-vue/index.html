@@ -280,7 +280,7 @@
     <div class="post-content">
       
         <h2 id="inupt输入框的change事件在失去焦点后触发"><a href="#inupt输入框的change事件在失去焦点后触发" class="headerlink" title="inupt输入框的change事件在失去焦点后触发"></a>inupt输入框的<code>change</code>事件在失去焦点后触发</h2><p>此时跟blur事件很像，查阅后的方案是将处理程序添加到input事件上面 <a href="https://forum.vuejs.org/t/v-on-change/8670" target="_blank" rel="noopener">参考链接</a></p>
-<h2 id="vue-input-file-多次上传不触发change事件问题"><a href="#vue-input-file-多次上传不触发change事件问题" class="headerlink" title="vue input file 多次上传不触发change事件问题"></a>vue input file 多次上传不触发change事件问题</h2><p>有一下几种方法（<a href="https://www.cnblogs.com/exhuasted/p/6185874.html" target="_blank" rel="noopener">参考链接</a>）：</p>
+<h2 id="vue-input-file-多次上传不触发change事件问题"><a href="#vue-input-file-多次上传不触发change事件问题" class="headerlink" title="vue input file 多次上传不触发change事件问题"></a>vue input file 多次上传不触发change事件问题</h2><p>有以下几种方法（<a href="https://www.cnblogs.com/exhuasted/p/6185874.html" target="_blank" rel="noopener">参考链接</a>）：</p>
 <ul>
 <li>清空input的value值</li>
 <li>替换掉原来的input 渲染一个新的input</li>
@@ -294,10 +294,12 @@
 <p><a href="https://vue-loader-v14.vuejs.org/zh-cn/features/scoped-css.html" target="_blank" rel="noopener">参考链接</a></p>
 <!-- ## 组件标签上添加class、style 与 元素上添加class、style的区别
 
-```js
-<component-a class="class-a" style="positon: absoult;color: #fff;" />
-<div class="class-a" style="positon: absoult;color: #fff;" />
-``` -->
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;component-a <span class="class"><span class="keyword">class</span></span>=<span class="string">"class-a"</span> style=<span class="string">"positon: absoult;color: #fff;"</span> /&gt;</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"class-a"</span> style=<span class="string">"positon: absoult;color: #fff;"</span> /&gt;</span><br><span class="line"><span class="string">``</span><span class="string">` --&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## img 动态src属性值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>js</span><br><span class="line"><span class="comment">// 是加载不到图片的</span></span><br><span class="line">&lt;img :src=<span class="string">"flag ? './image/img.png' : './image.img2.png'"</span> /&gt;</span><br><span class="line"><span class="comment">// 需要这样</span></span><br><span class="line">&lt;img :src=<span class="string">"flag ? require('./image/img.png') : require('./image.img2.png')"</span> /&gt;</span><br><span class="line"><span class="comment">// 或者 将图片放到 static文件夹</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://blog.csdn.net/keji_123/article/details/79977210">vue 动态加载图片src的解决办法</a></p>
+<h2 id="v-for"><a href="#v-for" class="headerlink" title="v-for"></a>v-for</h2><blockquote>
+<p>注意 :key 的值若不唯一会报错</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Vue warn]: Duplicate keys detected: <span class="string">'&#123;key&#125;'</span>. This may cause an update error.  found <span class="keyword">in</span>  ---&gt; &lt;Anonymous&gt;        &lt;Nuxt&gt;          &lt;Default&gt; at layouts/default.vue            &lt;Root&gt;</span><br></pre></td></tr></table></figure>-->
       
     </div>
 
