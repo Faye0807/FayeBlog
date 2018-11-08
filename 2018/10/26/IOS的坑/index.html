@@ -17,10 +17,12 @@
 
 
 
-  <meta name="description" content="about fe"/>
+  <meta name="description" content="记录iOS开发问题及解决方法"/>
 
 
 
+
+  <meta name="keywords" content="BUG" />
 
 
 
@@ -40,7 +42,7 @@
 
 
 
-<link rel="canonical" href="https://littlefaye.gitee.io/teresa/tags/HTTP/"/>
+<link rel="canonical" href="https://littlefaye.gitee.io/teresa/2018/10/26/IOS的坑/"/>
 
 
 
@@ -105,11 +107,7 @@
   window.config = {"title":"Teresa","subtitle":null,"description":"about fe","author":"Teresa-哼哼","language":"zh-CN","timezone":null,"url":"https://littlefaye.gitee.io/teresa","root":"/teresa/","permalink":":year/:month/:day/:title/","permalink_defaults":null,"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":true,"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":null,"first_line_number":"always1"},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","per_page":10,"pagination_dir":"page","theme":"even","deploy":{"type":"git","repo":"https://gitee.com/littleFaye/Teresa.git"},"ignore":[],"keywords":null,"index_generator":{"per_page":10,"order_by":"-date","path":""},"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"category_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"sanitize":false,"tables":true,"breaks":true,"smartLists":true,"smartypants":true,"modifyAnchors":"","autolink":true},"tag_generator":{"per_page":10},"server":{"port":4000,"log":false,"ip":"0.0.0.0","compress":false,"header":true},"since":2015,"favicon":"/favicon.ico","rss":false,"menu":{"Home":"/","Archives":"/archives/","Tags":"/tags","Categories":"/categories","About":"/about"},"color":"Default","toc":true,"fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"1748711164@qq.com","stack-overflow":null,"twitter":null,"facebook":null,"linkedin":null,"google":null,"github":"https://github.com/Faye0807","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":"q8I1nPpo7445tVF84mvOlAyj-gzGzoHsz","app_key":"i9j12HoNltgi5uq4DLvonO0h"},"baidu_analytics":"9b4723f0455add81c1300727d6fe2f0f","baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
 </script>
 
-    <title>
-  
-    HTTP · Teresa
-  
-</title>
+    <title> IOS的坑 - Teresa </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -239,43 +237,128 @@
           <div id="content" class="content">
             
   
-  <section id="archive" class="archive">
-    
-      
-        <div class="archive-title tag">
-          <h2 class="archive-name">HTTP</h2>
-        </div>
-      
-    
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          IOS的坑
+        
+      </h1>
 
-    
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2018-09-11
-          
+      <div class="post-meta">
+        <span class="post-time">
+          2018-10-26
         </span>
-        <span class="archive-post-title">
-          <a href="/teresa/2018/09/11/HTTP协议/" class="archive-post-link">
-            HTTP协议
-          </a>
-        </span>
+        
+          <div class="post-category">
+            
+              <a href="/teresa/categories/BUG/">BUG</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/teresa/2018/10/26/IOS的坑/"
+             data-title="IOS的坑">
+            阅读次数 0
+          </div>
+        
       </div>
-    
-  </section>
+    </header>
 
-  
-  <nav class="pagination">
     
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1、overflow-hidden-失效-，背景仍可滑动问题"><span class="toc-text">1、overflow: hidden;失效 ，背景仍可滑动问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2、input"><span class="toc-text">2、input</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3、scroll滑动卡顿不流畅"><span class="toc-text">3、scroll滑动卡顿不流畅</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h1 id="1、overflow-hidden-失效-，背景仍可滑动问题"><a href="#1、overflow-hidden-失效-，背景仍可滑动问题" class="headerlink" title="1、overflow: hidden;失效 ，背景仍可滑动问题"></a>1、overflow: hidden;失效 ，背景仍可滑动问题</h1><ul>
+<li>改变控制背景 滑动方法；不使用 <code>overflow: hidden</code>; 改用 <code>position:fixed</code>;</li>
+<li>缺点：用于页面顶部还可以，当你有弹框时， <code>body</code> 会自动滑到顶部（此处还没找到破解方法，各位大神有方法，望赐教）</li>
+</ul>
+<h1 id="2、input"><a href="#2、input" class="headerlink" title="2、input"></a>2、input</h1><ul>
+<li>上面总多出边框 <code>outline:none</code> 也不管用(类似还有 <code>button</code> 的倒圆角问题)<ul>
+<li><code>-webkit-appearance:none</code>;</li>
+<li><a href="https://www.cnblogs.com/shawn-en/p/4352929.html" target="_blank" rel="noopener">关于-webkit-appearance 属性</a></li>
+</ul>
+</li>
+<li><a href="https://littlefaye.gitee.io//teresa/2018/10/26/HTML元素简记/">光标问题</a></li>
+<li><a href="https://segmentfault.com/q/1010000014364210/a-1020000014450087" target="_blank" rel="noopener">autofocus</a> 如果没有通过某种用户交互，iOS不会（触发<code>focus</code>事件）</li>
+</ul>
+<h1 id="3、scroll滑动卡顿不流畅"><a href="#3、scroll滑动卡顿不流畅" class="headerlink" title="3、scroll滑动卡顿不流畅"></a>3、scroll滑动卡顿不流畅</h1><ul>
+<li><code>-webkit-overflow-scrolling : touch</code>;</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://littlefaye.gitee.io/teresa">Teresa-哼哼</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://littlefaye.gitee.io/teresa/2018/10/26/IOS的坑/">https://littlefaye.gitee.io/teresa/2018/10/26/IOS的坑/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/teresa/tags/BUG/">BUG</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/teresa/2018/10/26/HTML元素简记/">
+        <span class="next-text nav-default">HTML元素简记</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 
+      </footer>
+    
+
+  </article>
 
 
           </div>
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
       </main>
